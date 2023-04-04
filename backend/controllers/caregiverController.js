@@ -24,7 +24,7 @@ const getCaregiver = async (req, res) => {
 // create a new caregiver
 const createCaregiver = async (req, res) => {
   const {
-    employee_id,
+    _id,
     employee_name,
     current_address,
     birth_year,
@@ -38,17 +38,61 @@ const createCaregiver = async (req, res) => {
     age,
   } = req.body;
 
+  let emptyFields = [];
+
+  if (!_id) {
+    emptyFields.push("_id");
+  }
+  if (!employee_name) {
+    emptyFields.push("employee_name");
+  }
+  if (!current_address) {
+    emptyFields.push("current_address");
+  }
+  if (!birth_year) {
+    emptyFields.push("birth_year");
+  }
+  if (!skill_level) {
+    emptyFields.push("skill_level");
+  }
+  if (!preferred_working_location) {
+    emptyFields.push("preferred_working_location");
+  }
+  // working_status can be null
+  // if (!working_status) {
+  //  emptyFields.push("working_status");
+  if (!employee_phone) {
+    emptyFields.push("employee_phone");
+  }
+  if (!employee_gender) {
+    emptyFields.push("employee_gender");
+  }
+  if (!national_id) {
+    emptyFields.push("national_id");
+  }
+  if (!national_id_issue_date) {
+    emptyFields.push("national_id_issue_date");
+  }
+  if (!age) {
+    emptyFields.push("age");
+  }
+  if (emptyFields.length > 0) {
+    return res.status(400).json({ error: "Please fill in all the fields" });
+  }
+
   // Check if employee_id is unique
-  const existingCaregiver = await Caregiver.findOne({ employee_id });
+  const existingCaregiver = await Caregiver.findOne({ _id });
 
   if (existingCaregiver) {
-    return res.status(400).json({ error: "employee_id must be unique" });
+    return res
+      .status(400)
+      .json({ error: "employee_id must be unique", emptyFields });
   }
 
   // add doc to db
   try {
     const caregiver = await Caregiver.create({
-      _id: employee_id,
+      _id,
       employee_name,
       current_address,
       birth_year,
