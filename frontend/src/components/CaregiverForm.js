@@ -39,13 +39,16 @@ const CaregiverForm = () => {
 
     console.log("caregiver object:", caregiver);
 
-    const response = await fetch("/api/caregivers", {
-      method: "POST",
-      body: JSON.stringify(caregiver),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://wecare247-backend.onrender.com/api/caregivers",
+      {
+        method: "POST",
+        body: JSON.stringify(caregiver),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
 
     if (!response.ok) {

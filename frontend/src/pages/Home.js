@@ -10,7 +10,9 @@ const Home = () => {
 
   useEffect(() => {
     const fetchCaregivers = async () => {
-      const response = await fetch("/api/caregivers");
+      const response = await fetch(
+        "https://wecare247-backend.onrender.com/api/caregivers"
+      );
       const json = await response.json();
 
       if (response.ok) {

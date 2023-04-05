@@ -6,9 +6,12 @@ const CaregiverDetails = ({ caregiver }) => {
   const { dispatch } = useCaregiversContext();
 
   const handleClick = async () => {
-    const response = await fetch("/api/caregivers/" + caregiver._id, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      "https://wecare247-backend.onrender.com/api/caregivers/" + caregiver._id,
+      {
+        method: "DELETE",
+      }
+    );
     const json = await response.json();
 
     if (response.ok) {
