@@ -9,8 +9,12 @@ const cors = require("cors");
 // express app
 const app = express();
 
-// Enable CORS for all routes
-app.use(cors());
+const corsOptions = {
+  origin: "https://wecare246.onrender.com", // Replace this with frontend origin
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions)); // Apply CORS middleware with the specified options
 
 // routes
 app.use("/api/caregivers", caregiverRoutes);
