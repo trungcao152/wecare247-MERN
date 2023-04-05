@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 });
 if (process.env.NODE_ENV === "production") {
   // Set static folder up in production
-  const frontendBuildPath = path.join(__dirname, "..", "frontend", "build");
+  const frontendBuildPath = path.join(process.cwd(), "frontend", "build");
   app.use(express.static(frontendBuildPath));
 
   app.get("*", (req, res) =>
