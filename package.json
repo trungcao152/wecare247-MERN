@@ -1,0 +1,24 @@
+{
+  "name": "wecare247-mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-server": "cd backend && npm install",
+    "start-server": "cd backend && npm run dev",
+    "install-client": "cd frontend && npm install",
+    "build-client": "cd frontend && npm run build",
+    "start-client": "cd frontend && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trungcao152/wecare247-MERN.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trungcao152/wecare247-MERN/issues"
+  },
+  "homepage": "https://github.com/trungcao152/wecare247-MERN#readme"
+}
