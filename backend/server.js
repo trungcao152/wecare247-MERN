@@ -10,14 +10,12 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-  origin: "https://wecare246.onrender.com", // Replace this with frontend origin
+  origin: "https://wecare246.onrender.com",
   optionsSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions)); // Apply CORS middleware with the specified options
-
-// routes
-app.use("/api/caregivers", caregiverRoutes);
+// Apply CORS middleware before other middlewares
+app.use(cors(corsOptions));
 
 //middleware
 app.use(express.json());
@@ -26,6 +24,10 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
+
+// routes
+app.use("/api/caregivers", caregiverRoutes);
+
 if (process.env.NODE_ENV === "production") {
   // Set static folder up in production
   const frontendBuildPath = path.join(__dirname, "..", "frontend", "build");
