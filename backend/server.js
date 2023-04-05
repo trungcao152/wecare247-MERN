@@ -8,6 +8,9 @@ const path = require("path");
 // express app
 const app = express();
 
+// routes
+app.use("/api/caregivers", caregiverRoutes);
+
 //middleware
 app.use(express.json());
 
@@ -16,17 +19,15 @@ app.use((req, res, next) => {
   next();
 });
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(process.cwd(), "/frontend/build")));
+  // Set static folder up in production
+  const frontendBuildPath = path.join(__dirname, "..", "frontend", "build");
+  app.use(express.static(frontendBuildPath));
 
   app.get("*", (req, res) => {
-    res.sendFile(
-      path.resolve(process.cwd(), "frontend", "build", "index.html")
-    );
+    res.sendFile(path.join(frontendBuildPath, "index.html"));
   });
+  console.log("Serving React App...");
 }
-
-// routes
-app.use("/api/caregivers", caregiverRoutes);
 
 //connect to db
 mongoose
@@ -35,8 +36,11 @@ mongoose
     // listen for requests
     app.listen(process.env.PORT, () => {
       console.log("connected to db and listening on port:", process.env.PORT);
+      console.log("Connected to the database");
     });
   })
   .catch((error) => {
     console.log(error);
   });
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("MONGO_URI:", process.env.MONGO_URI);
