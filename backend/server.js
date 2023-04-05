@@ -4,9 +4,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const caregiverRoutes = require("./routes/caregivers");
 const path = require("path");
+const cors = require("cors");
 
 // express app
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
 
 // routes
 app.use("/api/caregivers", caregiverRoutes);
