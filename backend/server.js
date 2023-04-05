@@ -36,11 +36,8 @@ mongoose
     // listen for requests
     app.listen(process.env.PORT, () => {
       console.log("connected to db and listening on port:", process.env.PORT);
-      console.log("Connected to the database");
     });
   })
   .catch((error) => {
     console.log(error);
   });
-console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("MONGO_URI:", process.env.MONGO_URI);
