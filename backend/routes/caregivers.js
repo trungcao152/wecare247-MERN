@@ -22,6 +22,6 @@ router.post("/", createCaregiver);
 router.delete("/:id", deleteCaregiver);
 
 // UPDATE caregiver
-router.patch("/:id", updateCaregiver);
+router.put("/:id", updateCaregiver);
 
 module.exports = router;
