@@ -100,3 +100,21 @@ div.error {
 input.error {
   border: 1px solid var(--error);
 }
+/* edit button */
+.edit-button {
+  background-color: #4caf50; /* Green background color */
+  border: none;
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding around the text */
+  font-size: 16px; /* Font size for the text */
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  transition-duration: 0.4s; /* Transition effect duration */
+  border-radius: 12px; /* Rounded corners */
+}
+
+.edit-button:hover {
+  background-color: #45a049; /* Darker green background color on hover */
+}
