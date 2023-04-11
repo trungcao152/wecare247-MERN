@@ -2,8 +2,16 @@ import { useState } from "react";
 import { useCaregiversContext } from "./hooks/useCaregiversContext";
 
 const EditCaregiverForm = ({ caregiver, setIsEditing }) => {
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   const formattedDate = caregiver.national_id_issue_date
-    ? new Date(caregiver.national_id_issue_date).toISOString().split("T")[0]
+    ? formatDate(caregiver.national_id_issue_date)
     : "";
 
   const [formState, setFormState] = useState({
@@ -17,13 +25,19 @@ const EditCaregiverForm = ({ caregiver, setIsEditing }) => {
     setFormState({ ...formState, [name]: value });
   };
 
+  //parse the date back to the yyyy-mm-dd format
+  const parseDate = (date) => {
+    const [day, month, year] = date.split("/");
+    return `${year}-${month}-${day}`;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    //Test url
-    const url =
-      "https://wecare247-backend.onrender.com/api/caregivers/" + caregiver._id;
-    console.log("Request URL:", url);
+    const updatedFormState = {
+      ...formState,
+      national_id_issue_date: parseDate(formState.national_id_issue_date),
+    };
 
     const response = await fetch(
       "https://wecare247-backend.onrender.com/api/caregivers/" + caregiver._id,
@@ -32,7 +46,7 @@ const EditCaregiverForm = ({ caregiver, setIsEditing }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formState),
+        body: JSON.stringify(updatedFormState),
       }
     );
 
@@ -134,7 +148,7 @@ const EditCaregiverForm = ({ caregiver, setIsEditing }) => {
       <label htmlFor="national_id_issue_date">
         National ID Issue Date:
         <input
-          type="date"
+          type="text"
           name="national_id_issue_date"
           value={formState.national_id_issue_date}
           onChange={handleChange}
