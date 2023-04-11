@@ -26,6 +26,10 @@ const CaregiverDetails = ({ caregiver }) => {
     setIsEditing(!isEditing);
   };
 
+  const formattedDate = (date) => {
+    return new Intl.DateTimeFormat("en-GB").format(new Date(date));
+  };
+
   return (
     <div className="caregiver-details">
       <h4>{caregiver._id}</h4>
@@ -67,7 +71,7 @@ const CaregiverDetails = ({ caregiver }) => {
       </p>
       <p>
         <strong>National ID issue date: </strong>
-        {caregiver.national_id_issue_date}
+        {formattedDate(caregiver.national_id_issue_date)}
       </p>
       <p>
         <strong>Age: </strong>
