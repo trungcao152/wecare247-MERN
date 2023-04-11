@@ -78,14 +78,16 @@ const CaregiverDetails = ({ caregiver }) => {
           addSuffix: true,
         })}
       </p>
+      <span className="material-symbols-outlined" onClick={handleEditClick}>
+        edit
+      </span>
+
       <span
         className="material-symbols-outlined delete-button"
         onClick={handleClick}>
         delete
       </span>
-      <span className="material-symbols-outlined" onClick={handleEditClick}>
-        edit
-      </span>
+
       {isEditing && (
         <EditCaregiverForm caregiver={caregiver} setIsEditing={setIsEditing} />
       )}
