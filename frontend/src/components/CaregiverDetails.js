@@ -78,10 +78,11 @@ const CaregiverDetails = ({ caregiver }) => {
           addSuffix: true,
         })}
       </p>
-      <span className="edit-button" onClick={handleEditClick}>
-        Edit
-      </span>
-
+      <div style={{ textAlign: "left" }}>
+        <button className="edit-button" onClick={handleEditClick}>
+          Edit
+        </button>
+      </div>
       <span className="material-symbols-outlined" onClick={handleClick}>
         delete
       </span>
