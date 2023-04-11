@@ -13,6 +13,11 @@ const EditCaregiverForm = ({ caregiver, setIsEditing }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    //Test url
+    const url =
+      "https://wecare247-backend.onrender.com/api/caregivers/" + caregiver._id;
+    console.log("Request URL:", url);
+
     const response = await fetch(
       "https://wecare247-backend.onrender.com/api/caregivers/" + caregiver._id,
       {

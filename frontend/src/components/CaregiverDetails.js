@@ -78,7 +78,9 @@ const CaregiverDetails = ({ caregiver }) => {
           addSuffix: true,
         })}
       </p>
-      <span className="material-symbols-outlined" onClick={handleClick}>
+      <span
+        className="material-symbols-outlined delete-button"
+        onClick={handleClick}>
         delete
       </span>
       <span className="material-symbols-outlined" onClick={handleEditClick}>
