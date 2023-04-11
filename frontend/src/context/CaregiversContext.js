@@ -18,6 +18,13 @@ export const caregiversReducer = (state, action) => {
           (c) => c._id !== action.payload._id
         ),
       };
+    case "UPDATE_CAREGIVER":
+      return {
+        caregivers: state.caregivers.map((c) =>
+          c._id === action.payload._id ? action.payload : c
+        ),
+      };
+
     default:
       return state;
   }

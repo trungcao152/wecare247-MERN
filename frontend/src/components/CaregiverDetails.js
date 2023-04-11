@@ -1,9 +1,12 @@
 import { useCaregiversContext } from "./hooks/useCaregiversContext";
 // date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { useState } from "react";
+import EditCaregiverForm from "./EditCaregiverForm";
 
 const CaregiverDetails = ({ caregiver }) => {
   const { dispatch } = useCaregiversContext();
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleClick = async () => {
     const response = await fetch(
@@ -17,6 +20,10 @@ const CaregiverDetails = ({ caregiver }) => {
     if (response.ok) {
       dispatch({ type: "DELETE_CAREGIVER", payload: json });
     }
+  };
+
+  const handleEditClick = () => {
+    setIsEditing(!isEditing);
   };
 
   return (
@@ -74,6 +81,12 @@ const CaregiverDetails = ({ caregiver }) => {
       <span className="material-symbols-outlined" onClick={handleClick}>
         delete
       </span>
+      <span className="material-symbols-outlined" onClick={handleEditClick}>
+        edit
+      </span>
+      {isEditing && (
+        <EditCaregiverForm caregiver={caregiver} setIsEditing={setIsEditing} />
+      )}
     </div>
   );
 };
