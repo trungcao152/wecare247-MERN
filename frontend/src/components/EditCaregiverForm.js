@@ -2,7 +2,14 @@ import { useState } from "react";
 import { useCaregiversContext } from "./hooks/useCaregiversContext";
 
 const EditCaregiverForm = ({ caregiver, setIsEditing }) => {
-  const [formState, setFormState] = useState(caregiver);
+  const formattedDate = caregiver.national_id_issue_date
+    ? new Date(caregiver.national_id_issue_date).toISOString().split("T")[0]
+    : "";
+
+  const [formState, setFormState] = useState({
+    ...caregiver,
+    national_id_issue_date: formattedDate,
+  });
   const { dispatch } = useCaregiversContext();
 
   const handleChange = (event) => {
@@ -42,84 +49,106 @@ const EditCaregiverForm = ({ caregiver, setIsEditing }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="employee_name"
-        value={formState.employee_name}
-        onChange={handleChange}
-        placeholder={`Name: ${caregiver.employee_name}`}
-      />
-      <input
-        type="text"
-        name="current_address"
-        value={formState.current_address}
-        onChange={handleChange}
-        placeholder={`Current Address: ${caregiver.current_address}`}
-      />
-
-      <input
-        type="number"
-        name="birth_year"
-        value={formState.birth_year}
-        onChange={handleChange}
-        placeholder={`Birth Year: ${caregiver.birth_year}`}
-      />
-      <input
-        type="number"
-        name="skill_level"
-        value={formState.skill_level}
-        onChange={handleChange}
-        placeholder={`Skill Level: ${caregiver.skill_level}`}
-      />
-      <input
-        type="text"
-        name="preferred_working_location"
-        value={formState.preferred_working_location}
-        onChange={handleChange}
-        placeholder={`Preferred Working Location: ${caregiver.preferred_working_location}`}
-      />
-      <input
-        type="text"
-        name="working_status"
-        value={formState.working_status}
-        onChange={handleChange}
-        placeholder={`Working Status: ${caregiver.working_status}`}
-      />
-      <input
-        type="number"
-        name="employee_phone"
-        value={formState.employee_phone}
-        onChange={handleChange}
-        placeholder={`Phone Number: ${caregiver.employee_phone}`}
-      />
-      <input
-        type="text"
-        name="employee_gender"
-        value={formState.employee_gender}
-        onChange={handleChange}
-        placeholder={`Gender: ${caregiver.employee_gender}`}
-      />
-      <input
-        type="text"
-        name="national_id"
-        value={formState.national_id}
-        onChange={handleChange}
-        placeholder={`National ID: ${caregiver.national_id}`}
-      />
-      <input
-        type="date"
-        name="national_id_issue_date"
-        value={formState.national_id_issue_date}
-        onChange={handleChange}
-        placeholder={`National ID Issue Date: ${caregiver.national_id_issue_date}`}
-      />
-      <input
-        type="number"
-        name="age"
-        value={formState.age}
-        onChange={handleChange}
-        placeholder={`Age: ${caregiver.age}`}
-      />
+      <label htmlFor="employee_name">
+        Name:
+        <input
+          type="text"
+          name="employee_name"
+          value={formState.employee_name}
+          onChange={handleChange}
+        />
+      </label>
+      <label htmlFor="current_address">
+        Current Address:
+        <input
+          type="text"
+          name="current_address"
+          value={formState.current_address}
+          onChange={handleChange}
+          placeholder={`Current Address: ${caregiver.current_address}`}
+        />
+      </label>
+      <label htmlFor="birth_year">
+        Birth Year:
+        <input
+          type="number"
+          name="birth_year"
+          value={formState.birth_year}
+          onChange={handleChange}
+        />
+      </label>
+      <label htmlFor="skill_level">
+        Skill Level:
+        <input
+          type="number"
+          name="skill_level"
+          value={formState.skill_level}
+          onChange={handleChange}
+        />
+      </label>
+      <label htmlFor="preferred_working_location">
+        Preferred Working Location:
+        <input
+          type="text"
+          name="preferred_working_location"
+          value={formState.preferred_working_location}
+          onChange={handleChange}
+        />
+      </label>
+      <label htmlFor="working_status">
+        Working Status:
+        <input
+          type="text"
+          name="working_status"
+          value={formState.working_status}
+          onChange={handleChange}
+        />
+      </label>
+      <label htmlFor="employee_phone">
+        Phone Number:
+        <input
+          type="number"
+          name="employee_phone"
+          value={formState.employee_phone}
+          onChange={handleChange}
+        />
+      </label>
+      <label htmlFor="employee_gender">
+        Gender:
+        <input
+          type="text"
+          name="employee_gender"
+          value={formState.employee_gender}
+          onChange={handleChange}
+        />
+      </label>
+      <label htmlFor="national_id">
+        National ID:
+        <input
+          type="text"
+          name="national_id"
+          value={formState.national_id}
+          onChange={handleChange}
+        />
+      </label>
+      <label htmlFor="national_id_issue_date">
+        National ID Issue Date:
+        <input
+          type="date"
+          name="national_id_issue_date"
+          value={formState.national_id_issue_date}
+          onChange={handleChange}
+        />
+      </label>
+      <label htmlFor="age">
+        Age:
+        <input
+          type="number"
+          name="age"
+          value={formState.age}
+          onChange={handleChange}
+        />
+      </label>
       <button type="submit">Submit</button>
     </form>
   );
