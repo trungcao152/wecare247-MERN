@@ -23,7 +23,6 @@ const CaregiverDetails = () => {
 
   return (
     <div className="caregiver-details">
-      <h2>{tableTitle}</h2>
       <CaregiversTable handleDelete={handleDelete} tableTitle={tableTitle} />
     </div>
   );
