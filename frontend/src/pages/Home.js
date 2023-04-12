@@ -6,7 +6,7 @@ import CaregiverDetails from "../components/CaregiverDetails";
 import CaregiverForm from "../components/CaregiverForm";
 
 const Home = () => {
-  const { caregivers, dispatch } = useCaregiversContext();
+  const { dispatch } = useCaregiversContext();
 
   useEffect(() => {
     const fetchCaregivers = async () => {
