@@ -46,15 +46,16 @@ const TableBody = ({ handleDelete, properties }) => {
 
   return (
     <tbody>
-      {caregivers.map((caregiver) => (
-        <TableRow
-          key={caregiver._id}
-          caregiver={caregiver}
-          handleDelete={handleDelete}
-          properties={properties}
-          formattedDate={formattedDate}
-        />
-      ))}
+      {caregivers &&
+        caregivers.map((caregiver) => (
+          <TableRow
+            key={caregiver._id}
+            caregiver={caregiver}
+            handleDelete={handleDelete}
+            properties={properties}
+            formattedDate={formattedDate}
+          />
+        ))}
     </tbody>
   );
 };
