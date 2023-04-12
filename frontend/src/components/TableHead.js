@@ -4,7 +4,9 @@ const TableHead = ({ columns, tableTitle }) => {
   return (
     <thead>
       <tr>
-        <th colSpan={columns.length + 1}>{tableTitle}</th>
+        <th className="tableTitle" colSpan={columns.length + 1}>
+          {tableTitle}
+        </th>
       </tr>
       <tr>
         {columns.map((column, index) => (
