@@ -25,10 +25,7 @@ const Home = () => {
   return (
     <div className="home">
       <div className="caregivers">
-        {caregivers &&
-          caregivers.map((caregiver) => (
-            <CaregiverDetails key={caregiver._id} caregiver={caregiver} />
-          ))}
+        <CaregiverDetails />
       </div>
       <CaregiverForm />
     </div>
