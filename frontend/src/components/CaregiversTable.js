@@ -42,10 +42,8 @@ const CaregiverRow = ({
 };
 
 const CaregiversTable = ({ handleDelete, tableTitle }) => {
-  const { caregivers } = useCaregiversContext();
-  const { sortedItems, requestSort, sortingKeys } = useSortableData(
-    caregivers || []
-  );
+  const { caregivers = [] } = useCaregiversContext();
+  const { sortedItems, requestSort, sortingKeys } = useSortableData(caregivers);
 
   const columns = [
     "ID",
