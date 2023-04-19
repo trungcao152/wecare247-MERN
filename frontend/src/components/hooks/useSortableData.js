@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 
-const useSortableData = (data = [], defaultSortKeys) => {
+const useSortableData = (data = [], defaultSortKeys = []) => {
   const [sortingKeys, setSortingKeys] = useState(defaultSortKeys);
 
   const requestSort = (key, direction) => {
