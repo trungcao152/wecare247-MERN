@@ -17,10 +17,10 @@ const TableHead = ({
 
     return (
       <>
-        <button onClick={() => handleSort("asc")}>
+        <button className="arrow arrow-up" onClick={() => handleSort("asc")}>
           {sortKey?.direction === "asc" ? "▲" : "▲"}
         </button>
-        <button onClick={() => handleSort("desc")}>
+        <button className="arrow arrow-down" onClick={() => handleSort("desc")}>
           {sortKey?.direction === "desc" ? "▼" : "▼"}
         </button>
       </>
