@@ -5,7 +5,7 @@ const TableHead = ({
   properties,
   tableTitle,
   requestSort,
-  sortingKeys,
+  sortingKeys = [],
 }) => {
   //Render arrow
   const renderSortingArrows = (property) => {
