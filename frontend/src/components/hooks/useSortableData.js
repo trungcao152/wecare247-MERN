@@ -16,6 +16,10 @@ const useSortableData = (data = [], defaultSortKeys = []) => {
   };
 
   const sortedItems = useMemo(() => {
+    if (!data || !sortingKeys) {
+      return data;
+    }
+
     const sorted = [...data].sort((a, b) => {
       for (const { key, direction } of sortingKeys) {
         const aValue = a[key];
