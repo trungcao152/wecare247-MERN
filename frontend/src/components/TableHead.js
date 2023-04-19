@@ -1,6 +1,32 @@
 import React from "react";
 
-const TableHead = ({ columns, tableTitle }) => {
+const TableHead = ({
+  columns,
+  properties,
+  tableTitle,
+  requestSort,
+  sortingKeys,
+}) => {
+  //Render arrow
+  const renderSortingArrows = (property) => {
+    const sortKey = sortingKeys.find((k) => k.key === property);
+
+    const handleSort = (direction) => {
+      requestSort(property, direction);
+    };
+
+    return (
+      <>
+        <button onClick={() => handleSort("asc")}>
+          {sortKey?.direction === "asc" ? "▲" : "▲"}
+        </button>
+        <button onClick={() => handleSort("desc")}>
+          {sortKey?.direction === "desc" ? "▼" : "▼"}
+        </button>
+      </>
+    );
+  };
+
   return (
     <thead>
       <tr>
@@ -10,7 +36,10 @@ const TableHead = ({ columns, tableTitle }) => {
       </tr>
       <tr>
         {columns.map((column, index) => (
-          <th key={index}>{column}</th>
+          <th key={index}>
+            {column}
+            {renderSortingArrows(properties[index])}
+          </th>
         ))}
         <th></th>
       </tr>

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import EditCaregiverForm from "./EditCaregiverForm";
 import { useCaregiversContext } from "./hooks/useCaregiversContext";
+import useSortableData from "./hooks/useSortableData";
 
 const CaregiverRow = ({
   caregiver,
@@ -10,7 +11,7 @@ const CaregiverRow = ({
   properties,
   formatCellContent,
 }) => {
-  const [isEditing, setIsEditing] = React.useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleEdit = () => {
     setIsEditing(!isEditing);
@@ -42,6 +43,8 @@ const CaregiverRow = ({
 
 const CaregiversTable = ({ handleDelete, tableTitle }) => {
   const { caregivers } = useCaregiversContext();
+  const { sortedItems, requestSort, sortingKeys } = useSortableData(caregivers);
+
   const columns = [
     "ID",
     "Name",
@@ -83,10 +86,16 @@ const CaregiversTable = ({ handleDelete, tableTitle }) => {
 
   return (
     <table>
-      <TableHead columns={columns} tableTitle={tableTitle} />
+      <TableHead
+        columns={columns}
+        properties={properties}
+        tableTitle={tableTitle}
+        requestSort={requestSort}
+        sortingKeys={sortingKeys}
+      />
       <TableBody>
-        {caregivers &&
-          caregivers.map((caregiver) => (
+        {sortedItems &&
+          sortedItems.map((caregiver) => (
             <CaregiverRow
               key={caregiver._id}
               caregiver={caregiver}
