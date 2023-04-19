@@ -123,24 +123,18 @@ input.error {
   font-weight: bold;
 }
 .arrow {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  outline: none;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
 }
 
 .arrow-up {
-  border-bottom: 5px solid black;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
 }
 
 .arrow-down {
-  border-top: 5px solid black;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
