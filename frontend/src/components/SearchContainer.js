@@ -1,3 +1,4 @@
+// SearchContainer.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useSearch from "./hooks/useSearch";
@@ -44,6 +45,17 @@ const SearchContainer = ({ dataSources }) => {
       <SearchResults results={searchResults} searchQuery={query} />
     </div>
   );
+};
+
+// Define the default dataSources prop outside the component function
+SearchContainer.defaultProps = {
+  dataSources: [
+    {
+      name: "caregivers",
+      label: "Caregivers",
+    },
+    // Add more data sources here as needed
+  ],
 };
 
 export default SearchContainer;
