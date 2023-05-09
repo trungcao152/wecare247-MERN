@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const SearchResults = ({ results, searchQuery }) => {
+  const [searching, setSearching] = useState(false);
+
+  useEffect(() => {
+    setSearching(true);
+    // Simulate search delay
+    setTimeout(() => {
+      setSearching(false);
+    }, 500);
+  }, [results]);
+
   // Highlight the searched keywords in results
   const highlightKeyword = (text, keyword) => {
     const regex = new RegExp(`(${keyword})`, "gi");
@@ -9,7 +19,9 @@ const SearchResults = ({ results, searchQuery }) => {
 
   return (
     <div>
-      {!Array.isArray(results) || results.length === 0 ? (
+      {searching ? (
+        <p>Searching...</p>
+      ) : !Array.isArray(results) || results.length === 0 ? (
         <p>
           There is no matching result, please change the searching keywords.
         </p>

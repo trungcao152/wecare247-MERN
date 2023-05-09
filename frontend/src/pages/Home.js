@@ -25,7 +25,9 @@ const Home = () => {
 
   return (
     <div className="home">
-      <SearchContainer />
+      <header>
+        <SearchContainer />
+      </header>
       <div className="caregivers">
         <CaregiverDetails />
       </div>
