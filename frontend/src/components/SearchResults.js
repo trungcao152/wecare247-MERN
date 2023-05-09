@@ -9,7 +9,7 @@ const SearchResults = ({ results, searchQuery }) => {
 
   return (
     <div>
-      {results.length === 0 ? (
+      {!Array.isArray(results) || results.length === 0 ? (
         <p>
           There is no matching result, please change the searching keywords.
         </p>
