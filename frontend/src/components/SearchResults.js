@@ -17,6 +17,9 @@ const SearchResults = ({ results = [], searchQuery }) => {
     return text.replace(regex, "<mark>$1</mark>");
   };
 
+  //Checking the results
+  console.log("results:", results);
+
   return (
     <div>
       {!searching &&
