@@ -19,9 +19,9 @@ const SearchResults = ({ results, searchQuery }) => {
 
   return (
     <div>
-      {searching ? (
-        <p>Searching...</p>
-      ) : !Array.isArray(results) || results.length === 0 ? (
+      {!searching &&
+      (!Array.isArray(results) || results.length === 0) &&
+      searchQuery !== "" ? (
         <p>
           There is no matching result, please change the searching keywords.
         </p>

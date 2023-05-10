@@ -13,6 +13,7 @@ body {
 }
 header {
   background: #fff;
+  width: 100%;
 }
 header .container {
   max-width: 1400px;
@@ -34,9 +35,10 @@ header a {
 
 /* homepage */
 .home {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 .caregiver-details {
   background: #fff;
@@ -121,20 +123,4 @@ input.error {
 .tableTitle {
   font-size: 1.5em; /* Adjust the font size to your preference */
   font-weight: bold;
-}
-.arrow {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-}
-
-.arrow-up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-}
-
-.arrow-down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
 }
