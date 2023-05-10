@@ -85,27 +85,29 @@ const CaregiversTable = ({ handleDelete, tableTitle }) => {
   };
 
   return (
-    <table>
-      <TableHead
-        columns={columns}
-        properties={properties}
-        tableTitle={tableTitle}
-        requestSort={requestSort}
-        sortingKeys={sortingKeys}
-      />
-      <TableBody>
-        {sortedItems &&
-          sortedItems.map((caregiver) => (
-            <CaregiverRow
-              key={caregiver._id}
-              caregiver={caregiver}
-              handleDelete={handleDelete}
-              properties={properties}
-              formatCellContent={formatCellContent}
-            />
-          ))}
-      </TableBody>
-    </table>
+    <div className="caregivers-table">
+      <table>
+        <TableHead
+          columns={columns}
+          properties={properties}
+          tableTitle={tableTitle}
+          requestSort={requestSort}
+          sortingKeys={sortingKeys}
+        />
+        <TableBody>
+          {sortedItems &&
+            sortedItems.map((caregiver) => (
+              <CaregiverRow
+                key={caregiver._id}
+                caregiver={caregiver}
+                handleDelete={handleDelete}
+                properties={properties}
+                formatCellContent={formatCellContent}
+              />
+            ))}
+        </TableBody>
+      </table>
+    </div>
   );
 };
 
