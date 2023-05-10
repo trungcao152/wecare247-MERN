@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const SearchResults = ({ results, searchQuery }) => {
+const SearchResults = ({ results = [], searchQuery }) => {
   const [searching, setSearching] = useState(false);
 
   useEffect(() => {
