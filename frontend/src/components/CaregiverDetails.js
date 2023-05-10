@@ -1,5 +1,7 @@
 import { useCaregiversContext } from "./hooks/useCaregiversContext";
 import CaregiversTable from "./CaregiversTable";
+import CaregiverForm from "./CaregiverForm";
+import "./Caregivers.css"; // Import the CSS file
 
 const CaregiverDetails = () => {
   const { dispatch } = useCaregiversContext();
@@ -22,7 +24,8 @@ const CaregiverDetails = () => {
   const tableTitle = "Caregiver Database";
 
   return (
-    <div className="caregiver-details">
+    <div className="caregivers-container">
+      <CaregiverForm />
       <CaregiversTable handleDelete={handleDelete} tableTitle={tableTitle} />
     </div>
   );

@@ -4,7 +4,6 @@ import SearchContainer from "../components/SearchContainer";
 
 // components
 import CaregiverDetails from "../components/CaregiverDetails";
-import CaregiverForm from "../components/CaregiverForm";
 
 const Home = () => {
   const { dispatch } = useCaregiversContext();
@@ -31,7 +30,6 @@ const Home = () => {
       <div className="caregivers">
         <CaregiverDetails />
       </div>
-      <CaregiverForm />
     </div>
   );
 };
