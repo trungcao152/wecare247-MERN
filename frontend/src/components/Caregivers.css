@@ -1,7 +1,7 @@
 .caregivers-container {
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
 }
 
 .caregivers-container .caregiver-form {
