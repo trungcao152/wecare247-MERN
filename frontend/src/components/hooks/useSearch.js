@@ -16,7 +16,7 @@ const useSearch = (searchDatabases = []) => {
     if (
       !searchQuery ||
       !selectedDatabase ||
-      !searchDatabases.includes(selectedDatabase)
+      !searchDatabases.some((database) => database.name === selectedDatabase)
     ) {
       return [];
     }
