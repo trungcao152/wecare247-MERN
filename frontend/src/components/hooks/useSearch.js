@@ -1,10 +1,11 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { useCaregiversContext } from "./useCaregiversContext";
 
-const useSearch = (searchDatabases = []) => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDatabase, setSelectedDatabase] = useState("");
-
+const useSearch = (
+  searchDatabases = [],
+  searchQuery = "",
+  selectedDatabase = ""
+) => {
   const { caregivers } = useCaregiversContext();
 
   const databases = {
@@ -13,11 +14,7 @@ const useSearch = (searchDatabases = []) => {
   };
 
   const searchResults = useMemo(() => {
-    if (
-      !searchQuery ||
-      !selectedDatabase ||
-      !searchDatabases.some((database) => database.name === selectedDatabase)
-    ) {
+    if (!searchQuery || !selectedDatabase || !databases[selectedDatabase]) {
       return [];
     }
 
@@ -27,15 +24,9 @@ const useSearch = (searchDatabases = []) => {
       const regex = new RegExp(searchQuery, "i");
       return item.name.match(regex) || item.description.match(regex);
     });
-  }, [searchQuery, selectedDatabase, searchDatabases, databases]);
+  }, [searchQuery, selectedDatabase, databases]);
 
-  return {
-    searchQuery,
-    setSearchQuery,
-    selectedDatabase,
-    setSelectedDatabase,
-    searchResults,
-  };
+  return searchResults;
 };
 
 export default useSearch;
