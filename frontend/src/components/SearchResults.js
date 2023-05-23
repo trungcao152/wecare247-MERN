@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import CaregiverTable from "./CaregiverTable";
 
-const SearchResults = ({ results = [], searchQuery }) => {
+const SearchResults = ({ results = [], searchQuery, searchSubmitted }) => {
   const [searching, setSearching] = useState(false);
 
   useEffect(() => {
@@ -11,35 +12,35 @@ const SearchResults = ({ results = [], searchQuery }) => {
     }, 500);
   }, [results]);
 
-  // Highlight the searched keywords in results
-  const highlightKeyword = (text, keyword) => {
-    const regex = new RegExp(`(${keyword})`, "gi");
-    return text.replace(regex, "<mark>$1</mark>");
+  // Filter the search results based on the search query
+  const filteredResults = (results) => {
+    return results.filter((item) => {
+      const regex = new RegExp(searchQuery, "i");
+      return (
+        item.employee_name.match(regex) ||
+        item.current_address.match(regex) ||
+        item.preferred_working_location.match(regex)
+      );
+    });
   };
-
-  //Checking the results
-  console.log("results:", results);
 
   return (
     <div>
-      {!searching &&
-      (!Array.isArray(results) || results.length === 0) &&
-      searchQuery !== "" ? (
-        <p>
-          There is no matching result, please change the searching keywords.
-        </p>
+      {searching ? (
+        <p>Searching...</p>
+      ) : searchSubmitted && searchQuery !== "" ? (
+        filteredResults(results).length > 0 ? (
+          <div>
+            <h2>Caregiver Database</h2>
+            <CaregiverTable caregivers={filteredResults(results)} />
+          </div>
+        ) : (
+          <p>
+            There is no matching result, please change the searching keywords.
+          </p>
+        )
       ) : (
-        results.map((result, index) => (
-          <div
-            key={index}
-            dangerouslySetInnerHTML={{
-              __html: `
-                <h3>${highlightKeyword(result.name, searchQuery)}</h3>
-                <p>${highlightKeyword(result.description, searchQuery)}</p>
-              `,
-            }}
-          />
-        ))
+        <p>Enter keywords to start searching.</p>
       )}
     </div>
   );

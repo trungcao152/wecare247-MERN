@@ -6,11 +6,13 @@ import SearchResults from "./SearchResults";
 const SearchContainer = ({ dataSources }) => {
   const [query, setQuery] = useState("");
   const [selectedDataSource, setSelectedDataSource] = useState("all");
+  const [searchSubmitted, setSearchSubmitted] = useState(false);
   const searchResults = useSearch(dataSources, query, selectedDataSource);
   const navigate = useNavigate();
 
   const handleSearch = (event) => {
     event.preventDefault();
+    setSearchSubmitted(true);
     navigate("/search-results");
   };
 
@@ -41,7 +43,11 @@ const SearchContainer = ({ dataSources }) => {
         </select>
         <button type="submit">Search</button>
       </form>
-      <SearchResults results={searchResults} searchQuery={query} />
+      <SearchResults
+        results={searchResults}
+        searchQuery={query}
+        searchSubmitted={searchSubmitted}
+      />
     </div>
   );
 };
