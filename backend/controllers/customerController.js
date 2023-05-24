@@ -1,0 +1,121 @@
+const Customer = require("../models/customerModel");
+const mongoose = require("mongoose");
+
+// get all customers
+const getCustomers = async (req, res) => {
+  const customers = await Customer.find({}).sort({ createdAt: -1 });
+  res.status(200).json(customers);
+};
+
+// get one customer
+const getCustomer = async (req, res) => {
+  const { id } = req.params;
+  const customer = await Customer.findById(id);
+  if (!customer) {
+    res.status(404).json({ message: "Customer not found" });
+  } else {
+    res.status(200).json(customer);
+  }
+};
+
+// create a customer
+const createCustomer = async (req, res) => {
+  const {
+    _id,
+    customer_name,
+    customer_phone,
+    customer_email,
+    customer_birthday,
+    customer_address,
+    customer_creator,
+    customer_type,
+  } = req.body;
+
+  let emptyFields = [];
+
+  if (!_id) {
+    emptyFields.push("_id");
+  }
+  if (!customer_name) {
+    emptyFields.push("customer_name");
+  }
+  if (!customer_phone) {
+    emptyFields.push("customer_phone");
+  }
+  if (!customer_email) {
+    emptyFields.push("customer_email");
+  }
+  if (!customer_birthday) {
+    emptyFields.push("customer_birthday");
+  }
+  if (!customer_address) {
+    emptyFields.push("customer_address");
+  }
+  if (!customer_creator) {
+    emptyFields.push("customer_creator");
+  }
+  if (!customer_type) {
+    emptyFields.push("customer_type");
+  }
+  if (emptyFields.length > 0) {
+    return res.status(400).json({ error: "Please fill in all the fields" });
+  }
+
+  // Check if customer_id is unique
+  const existingCustomer = await Customer.findOne({ _id });
+
+  if (existingCustomer) {
+    return res
+      .status(400)
+      .json({ error: "customer_id must be unique", emptyFields });
+  }
+
+  // add doc to db
+  try {
+    const customer = await Customer.create({
+      _id,
+      customer_name,
+      customer_phone,
+      customer_email,
+      customer_birthday,
+      customer_address,
+      customer_creator,
+      customer_type,
+    });
+    res.status(200).json(customer);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// update a customer
+const updateCustomer = async (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No customer with id: ${id}`);
+
+  const updatedCustomer = { ...req.body, _id: id };
+
+  await Customer.findByIdAndUpdate(id, updatedCustomer, { new: true });
+
+  res.json(updatedCustomer);
+};
+
+// delete a customer
+const deleteCustomer = async (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No customer with id: ${id}`);
+
+  await Customer.findByIdAndRemove(id);
+
+  res.json({ message: "Customer deleted successfully." });
+};
+
+module.exports = {
+  getCustomers,
+  getCustomer,
+  createCustomer,
+  updateCustomer,
+  deleteCustomer,
+};
