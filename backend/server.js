@@ -3,6 +3,10 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const caregiverRoutes = require("./routes/caregivers");
+const customerRoutes = require("./routes/customers");
+const patientRoutes = require("./routes/patients");
+const productRoutes = require("./routes/products");
+const shiftRoutes = require("./routes/shifts");
 const path = require("path");
 const cors = require("cors");
 
@@ -27,6 +31,10 @@ app.use((req, res, next) => {
 
 // routes
 app.use("/api/caregivers", caregiverRoutes);
+app.use("/api/customer", customerRoutes);
+app.use("/api/patients", patientRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/shifts", shiftRoutes);
 
 if (process.env.NODE_ENV === "production") {
   // Set static folder up in production
