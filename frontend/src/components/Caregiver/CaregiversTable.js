@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import TableHead from "./TableHead";
-import TableBody from "./TableBody";
-import EditCaregiverForm from "./EditCaregiverForm";
-import { useCaregiversContext } from "./hooks/useCaregiversContext";
-import useSortableData from "./hooks/useSortableData";
+import TableHead from "../TableHead";
+import TableBody from "../TableBody";
+import CaregiverEditForm from "./CaregiverEditForm";
+import { useCaregiversContext } from "../hooks/useCaregiversContext";
+import useSortableData from "../hooks/useSortableData";
 
 const CaregiverRow = ({
   caregiver,
@@ -21,7 +21,7 @@ const CaregiverRow = ({
     <tr key={caregiver._id}>
       {isEditing ? (
         <td colSpan={properties.length + 1}>
-          <EditCaregiverForm
+          <CaregiverEditForm
             caregiver={caregiver}
             setIsEditing={setIsEditing}
           />

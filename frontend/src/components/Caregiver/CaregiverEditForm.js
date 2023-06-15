@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useCaregiversContext } from "./hooks/useCaregiversContext";
+import { useCaregiversContext } from "../hooks/useCaregiversContext";
 
-const EditCaregiverForm = ({ caregiver, setIsEditing }) => {
+const CaregiverEditForm = ({ caregiver, setIsEditing }) => {
   const formatDate = (date) => {
     const d = new Date(date);
     const day = String(d.getDate()).padStart(2, "0");
@@ -168,4 +168,4 @@ const EditCaregiverForm = ({ caregiver, setIsEditing }) => {
   );
 };
 
-export default EditCaregiverForm;
+export default CaregiverEditForm;

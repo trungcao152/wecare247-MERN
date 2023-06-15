@@ -3,7 +3,7 @@ import { useCaregiversContext } from "../components/hooks/useCaregiversContext";
 import SearchContainer from "../components/SearchContainer";
 
 // components
-import CaregiverDetails from "../components/CaregiverDetails";
+import CaregiverDetails from "../components/Caregiver/CaregiverDetails";
 
 const Home = () => {
   const { dispatch } = useCaregiversContext();

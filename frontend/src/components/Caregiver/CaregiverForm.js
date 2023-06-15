@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCaregiversContext } from "./hooks/useCaregiversContext";
+import { useCaregiversContext } from "../hooks/useCaregiversContext";
 
 const CaregiverForm = () => {
   const { dispatch } = useCaregiversContext();

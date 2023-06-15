@@ -1,4 +1,4 @@
-import { useCaregiversContext } from "./hooks/useCaregiversContext";
+import { useCaregiversContext } from "../hooks/useCaregiversContext";
 import CaregiversTable from "./CaregiversTable";
 import CaregiverForm from "./CaregiverForm";
 import "./Caregivers.css"; // Import the CSS file
