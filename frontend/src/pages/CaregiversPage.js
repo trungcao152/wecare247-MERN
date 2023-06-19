@@ -5,7 +5,7 @@ import SearchContainer from "../components/SearchContainer";
 // components
 import CaregiverDetails from "../components/Caregiver/CaregiverDetails";
 
-const Home = () => {
+const CaregiversPage = () => {
   const { dispatch } = useCaregiversContext();
 
   useEffect(() => {
@@ -34,4 +34,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CaregiversPage;

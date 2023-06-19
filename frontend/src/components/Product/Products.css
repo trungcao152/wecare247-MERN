@@ -1,0 +1,14 @@
+.caregivers-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.caregivers-container .caregiver-form {
+  flex: 0.25; /* this will take up 30% of the total width */
+  margin-right: 20px; /* this will add a small gap on the right side */
+}
+
+.caregivers-container .caregivers-table {
+  flex: 0.75; /* this will take up 70% of the total width */
+}
