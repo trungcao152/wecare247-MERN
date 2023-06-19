@@ -14,14 +14,18 @@ import ProductsPage from "./pages/ProductsPage";
 import ShiftsPage from "./pages/ShiftsPage";
 import Navbar from "./components/Navbar";
 
-function App() {
+const ConditionalNavbar = () => {
   const location = useLocation();
   const showNavbar = location.pathname !== "/";
 
+  return showNavbar && <Navbar />;
+};
+
+function App() {
   return (
     <div className="App">
       <Router>
-        {showNavbar && <Navbar />}
+        <ConditionalNavbar />
         <div className="pages">
           <Routes>
             <Route path="/" element={<WelcomePage />} />
