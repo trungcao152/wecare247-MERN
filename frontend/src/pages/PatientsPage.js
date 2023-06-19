@@ -5,7 +5,7 @@ import SearchContainer from "../components/SearchContainer";
 // components
 import PatientDetails from "../components/Patient/PatientDetails";
 
-const Patients = () => {
+const PatientsPage = () => {
   const { dispatch } = usePatientsContext();
 
   useEffect(() => {
@@ -34,4 +34,4 @@ const Patients = () => {
   );
 };
 
-export default Patients;
+export default PatientsPage;

@@ -49,7 +49,14 @@ const ShiftRow = ({
   );
 };
 
-const ShiftsTable = ({ handleDelete, tableTitle }) => {
+const ShiftTable = ({
+  handleDelete,
+  tableTitle,
+  caregivers,
+  customers,
+  patients,
+  products,
+}) => {
   const { shifts = [] } = useShiftsContext();
   const { sortedItems, requestSort, sortingKeys } = useSortableData(shifts);
 
@@ -109,4 +116,4 @@ const ShiftsTable = ({ handleDelete, tableTitle }) => {
   );
 };
 
-export default ShiftsTable;
+export default ShiftTable;

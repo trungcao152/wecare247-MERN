@@ -5,7 +5,7 @@ import SearchContainer from "../components/SearchContainer";
 // components
 import ProductDetails from "../components/Product/ProductDetails";
 
-const Home = () => {
+const ProductsPage = () => {
   const { dispatch } = useProductsContext();
 
   useEffect(() => {
@@ -34,4 +34,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ProductsPage;

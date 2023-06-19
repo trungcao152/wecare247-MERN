@@ -1,14 +1,14 @@
-import { useCaregiversContext } from "../hooks/useCaregiversContext";
-import CaregiversTable from "./CaregiversTable";
-import CaregiverForm from "./CaregiverForm";
-import "./Caregivers.css"; // Import the CSS file
+import { useProductsContext } from "../hooks/useProductsContext";
+import ProductsTable from "./ProductTable";
+import ProductForm from "./ProductForm";
+import "./Products.css"; // Import the CSS file
 
-const CaregiverDetails = () => {
-  const { dispatch } = useCaregiversContext();
+const ProductDetails = () => {
+  const { dispatch } = useProductsContext();
 
   const handleDelete = async (id) => {
     const response = await fetch(
-      "https://wecare247-backend.onrender.com/api/caregivers/" + id,
+      "https://wecare247-backend.onrender.com/api/products/" + id,
       {
         method: "DELETE",
       }
@@ -21,14 +21,14 @@ const CaregiverDetails = () => {
   };
 
   // Props for the table title
-  const tableTitle = "Caregiver Database";
+  const tableTitle = "Product Database";
 
   return (
-    <div className="caregivers-container">
-      <CaregiverForm />
-      <CaregiversTable handleDelete={handleDelete} tableTitle={tableTitle} />
+    <div className="products-container">
+      <ProductForm />
+      <ProductsTable handleDelete={handleDelete} tableTitle={tableTitle} />
     </div>
   );
 };
 
-export default CaregiverDetails;
+export default ProductDetails;

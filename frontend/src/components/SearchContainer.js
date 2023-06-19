@@ -1,3 +1,4 @@
+/*
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useSearch from "./hooks/useSearch";
@@ -64,3 +65,4 @@ SearchContainer.defaultProps = {
 };
 
 export default SearchContainer;
+*/

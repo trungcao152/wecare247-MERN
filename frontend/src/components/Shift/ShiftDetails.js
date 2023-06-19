@@ -3,7 +3,7 @@ import { useCaregiversContext } from "../hooks/useCaregiversContext";
 import { useCustomersContext } from "../hooks/useCustomersContext";
 import { usePatientsContext } from "../hooks/usePatientsContext";
 import { useProductsContext } from "../hooks/useProductsContext";
-import ShiftsTable from "./ShiftTable";
+import ShiftTable from "./ShiftTable";
 import ShiftForm from "./ShiftForm";
 import "./Shifts.css"; // Import the CSS file
 
@@ -40,7 +40,7 @@ const ShiftDetails = () => {
         patients={patients}
         products={products}
       />
-      <ShiftsTable
+      <ShiftTable
         handleDelete={handleDelete}
         tableTitle={tableTitle}
         caregivers={caregivers}
