@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useCustomersContext } from "../components/hooks/useCustomersContext";
-import SearchContainer from "../components/SearchContainer";
+//import SearchContainer from "../components/SearchContainer";
 
 // components
 import CustomerDetails from "../components/Customer/CustomerDetails";
 
-const Customers = () => {
+const CustomersPage = () => {
   const { dispatch } = useCustomersContext();
 
   useEffect(() => {
@@ -24,9 +24,6 @@ const Customers = () => {
 
   return (
     <div className="home">
-      <header>
-        <SearchContainer />
-      </header>
       <div className="customers">
         <CustomerDetails />
       </div>
@@ -34,4 +31,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default CustomersPage;

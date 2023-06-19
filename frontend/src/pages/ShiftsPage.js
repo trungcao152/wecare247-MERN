@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useShiftsContext } from "../components/hooks/useShiftsContext";
-import SearchContainer from "../components/SearchContainer";
+//import SearchContainer from "../components/SearchContainer";
 
 // components
 import ShiftDetails from "../components/Shift/ShiftDetails";
 
-const Home = () => {
+const ShiftsPage = () => {
   const { dispatch } = useShiftsContext();
 
   useEffect(() => {
@@ -24,9 +24,6 @@ const Home = () => {
 
   return (
     <div className="home">
-      <header>
-        <SearchContainer />
-      </header>
       <div className="shifts">
         <ShiftDetails />
       </div>
@@ -34,4 +31,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ShiftsPage;

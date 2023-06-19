@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { usePatientsContext } from "../components/hooks/usePatientsContext";
-import SearchContainer from "../components/SearchContainer";
+//import SearchContainer from "../components/SearchContainer";
 
 // components
 import PatientDetails from "../components/Patient/PatientDetails";
@@ -24,9 +24,6 @@ const PatientsPage = () => {
 
   return (
     <div className="home">
-      <header>
-        <SearchContainer />
-      </header>
       <div className="patients">
         <PatientDetails />
       </div>

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useProductsContext } from "../components/hooks/useProductsContext";
-import SearchContainer from "../components/SearchContainer";
+//import SearchContainer from "../components/SearchContainer";
 
 // components
 import ProductDetails from "../components/Product/ProductDetails";
@@ -24,9 +24,6 @@ const ProductsPage = () => {
 
   return (
     <div className="home">
-      <header>
-        <SearchContainer />
-      </header>
       <div className="products">
         <ProductDetails />
       </div>
