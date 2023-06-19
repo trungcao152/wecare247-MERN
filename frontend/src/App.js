@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 // pages and components
 import WelcomePage from "./pages/WelcomePage";
@@ -10,10 +15,13 @@ import ShiftsPage from "./pages/ShiftsPage";
 import Navbar from "./components/Navbar";
 
 function App() {
+  const location = useLocation();
+  const showNavbar = location.pathname !== "/";
+
   return (
     <div className="App">
       <Router>
-        <Navbar />
+        {showNavbar && <Navbar />}
         <div className="pages">
           <Routes>
             <Route path="/" element={<WelcomePage />} />
