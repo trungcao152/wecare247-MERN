@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 export const PatientsContext = createContext();
 
@@ -32,6 +32,26 @@ export const PatientsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(patientsReducer, {
     patients: [],
   });
+
+  useEffect(() => {
+    // Function to load existing patients
+    const loadPatients = async () => {
+      const response = await fetch(
+        "https://wecare247-backend.onrender.com/api/patients"
+      );
+
+      if (!response.ok) {
+        console.error("Failed to fetch patients");
+        return;
+      }
+
+      const patients = await response.json();
+      dispatch({ type: "SET_PATIENTS", payload: patients });
+    };
+
+    // Call the function to load patients
+    loadPatients();
+  }, []);
 
   return (
     <PatientsContext.Provider value={{ ...state, dispatch }}>
