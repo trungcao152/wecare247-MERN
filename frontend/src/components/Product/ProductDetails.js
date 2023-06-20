@@ -16,7 +16,7 @@ const ProductDetails = () => {
     const json = await response.json();
 
     if (response.ok) {
-      dispatch({ type: "DELETE_CAREGIVER", payload: json });
+      dispatch({ type: "DELETE_PRODUCT", payload: json });
     }
   };
 
