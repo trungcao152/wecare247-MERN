@@ -30,7 +30,7 @@ export const patientsReducer = (state, action) => {
 
 export const PatientsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(patientsReducer, {
-    patients: null,
+    patients: [],
   });
 
   return (
