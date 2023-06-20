@@ -13,10 +13,20 @@ const PatientDetails = () => {
         method: "DELETE",
       }
     );
-    const json = await response.json();
 
-    if (response.ok) {
-      dispatch({ type: "DELETE_PATIENT", payload: json });
+    if (!response.ok) {
+      throw new Error(await response.text());
+    }
+
+    const json = await response.json();
+    dispatch({ type: "DELETE_PATIENT", payload: json });
+  };
+
+  const handleDeleteClick = async (id) => {
+    try {
+      await handleDelete(id);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -26,7 +36,7 @@ const PatientDetails = () => {
   return (
     <div className="patients-container">
       <PatientForm />
-      <PatientTable handleDelete={handleDelete} tableTitle={tableTitle} />
+      <PatientTable handleDelete={handleDeleteClick} tableTitle={tableTitle} />
     </div>
   );
 };
