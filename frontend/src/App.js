@@ -5,6 +5,12 @@ import {
   useLocation,
 } from "react-router-dom";
 
+import { CaregiversContextProvider } from "./context/CaregiversContext";
+import { PatientsContextProvider } from "./context/PatientsContext";
+import { CustomersContextProvider } from "./context/CustomersContext";
+import { ProductsContextProvider } from "./context/ProductsContext";
+import { ShiftsContextProvider } from "./context/ShiftsContext";
+
 // pages and components
 import WelcomePage from "./pages/WelcomePage";
 import CaregiversPage from "./pages/CaregiversPage";
@@ -29,11 +35,46 @@ function App() {
         <div className="pages">
           <Routes>
             <Route path="/" element={<WelcomePage />} />
-            <Route path="/caregivers" element={<CaregiversPage />} />
-            <Route path="/patients" element={<PatientsPage />} />
-            <Route path="/customers" element={<CustomersPage />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/shifts" element={<ShiftsPage />} />
+            <Route
+              path="/caregivers"
+              element={
+                <CaregiversContextProvider>
+                  <CaregiversPage />
+                </CaregiversContextProvider>
+              }
+            />
+            <Route
+              path="/patients"
+              element={
+                <PatientsContextProvider>
+                  <PatientsPage />
+                </PatientsContextProvider>
+              }
+            />
+            <Route
+              path="/customers"
+              element={
+                <CustomersContextProvider>
+                  <CustomersPage />
+                </CustomersContextProvider>
+              }
+            />
+            <Route
+              path="/products"
+              element={
+                <ProductsContextProvider>
+                  <ProductsPage />
+                </ProductsContextProvider>
+              }
+            />
+            <Route
+              path="/shifts"
+              element={
+                <ShiftsContextProvider>
+                  <ShiftsPage />
+                </ShiftsContextProvider>
+              }
+            />
           </Routes>
         </div>
       </Router>
