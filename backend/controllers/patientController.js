@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 // get all patients
 const getPatients = async (req, res) => {
-  const patients = await PageTransitionEvent.find({}).sort({ createdAt: -1 });
+  const patients = await Patient.find({}).sort({ createdAt: -1 });
   res.status(200).json(patients);
 };
 
