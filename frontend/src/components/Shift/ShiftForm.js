@@ -42,8 +42,6 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
       setStartTime("");
       setEndTime("");
       dispatch({ type: "CREATE_SHIFT", payload: json });
-    } else {
-      // handle error
     }
   };
 
@@ -56,42 +54,46 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
         <select
           onChange={(e) => setCaregiverId(e.target.value)}
           value={caregiver_id}>
-          {caregivers.map((caregiver) => (
-            <option key={caregiver._id} value={caregiver._id}>
-              {caregiver.name}
-            </option>
-          ))}
+          {caregivers &&
+            caregivers.map((caregiver) => (
+              <option key={caregiver._id} value={caregiver._id}>
+                {caregiver.name}
+              </option>
+            ))}
         </select>
 
         <label>Customer:</label>
         <select
           onChange={(e) => setCustomerId(e.target.value)}
           value={customer_id}>
-          {customers.map((customer) => (
-            <option key={customer._id} value={customer._id}>
-              {customer.name}
-            </option>
-          ))}
+          {customers &&
+            customers.map((customer) => (
+              <option key={customer._id} value={customer._id}>
+                {customer.name}
+              </option>
+            ))}
         </select>
 
         <label>Patient:</label>
         <select
           onChange={(e) => setPatientId(e.target.value)}
           value={patient_id}>
-          {patients.map((patient) => (
-            <option key={patient._id} value={patient._id}>
-              {patient.name}
-            </option>
-          ))}
+          {patients &&
+            patients.map((patient) => (
+              <option key={patient._id} value={patient._id}>
+                {patient.name}
+              </option>
+            ))}
         </select>
 
         <label>Product:</label>
         <select onChange={(e) => setProduct(e.target.value)} value={product}>
-          {products.map((product) => (
-            <option key={product._id} value={product._id}>
-              {product.name}
-            </option>
-          ))}
+          {products &&
+            products.map((product) => (
+              <option key={product._id} value={product._id}>
+                {product.name}
+              </option>
+            ))}
         </select>
 
         <label>Start Time:</label>
