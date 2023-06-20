@@ -1,5 +1,5 @@
 import { useProductsContext } from "../hooks/useProductsContext";
-import ProductsTable from "./ProductTable";
+import ProductTable from "./ProductTable";
 import ProductForm from "./ProductForm";
 import "./Products.css"; // Import the CSS file
 
@@ -26,7 +26,7 @@ const ProductDetails = () => {
   return (
     <div className="products-container">
       <ProductForm />
-      <ProductsTable handleDelete={handleDelete} tableTitle={tableTitle} />
+      <ProductTable handleDelete={handleDelete} tableTitle={tableTitle} />
     </div>
   );
 };

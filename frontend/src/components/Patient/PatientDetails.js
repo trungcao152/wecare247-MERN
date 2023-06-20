@@ -1,5 +1,5 @@
 import { usePatientsContext } from "../hooks/usePatientsContext";
-import PatientsTable from "./PatientTable";
+import PatientTable from "./PatientTable";
 import PatientForm from "./PatientForm";
 import "./Patients.css"; // Import the CSS file
 
@@ -26,7 +26,7 @@ const PatientDetails = () => {
   return (
     <div className="patients-container">
       <PatientForm />
-      <PatientsTable handleDelete={handleDelete} tableTitle={tableTitle} />
+      <PatientTable handleDelete={handleDelete} tableTitle={tableTitle} />
     </div>
   );
 };

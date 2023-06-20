@@ -38,7 +38,7 @@ const CustomerRow = ({
   );
 };
 
-const CustomersTable = ({ handleDelete, tableTitle }) => {
+const CustomerTable = ({ handleDelete, tableTitle }) => {
   const { customers = [] } = useCustomersContext();
   const { sortedItems, requestSort, sortingKeys } = useSortableData(customers);
 
@@ -100,4 +100,4 @@ const CustomersTable = ({ handleDelete, tableTitle }) => {
   );
 };
 
-export default CustomersTable;
+export default CustomerTable;

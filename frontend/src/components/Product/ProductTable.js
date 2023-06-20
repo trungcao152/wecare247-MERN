@@ -38,7 +38,7 @@ const ProductRow = ({
   );
 };
 
-const ProductsTable = ({ handleDelete, tableTitle }) => {
+const ProductTable = ({ handleDelete, tableTitle }) => {
   const { products = [] } = useProductsContext();
   const { sortedItems, requestSort, sortingKeys } = useSortableData(products);
 
@@ -92,4 +92,4 @@ const ProductsTable = ({ handleDelete, tableTitle }) => {
   );
 };
 
-export default ProductsTable;
+export default ProductTable;

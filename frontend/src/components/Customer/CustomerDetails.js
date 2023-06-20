@@ -1,5 +1,5 @@
 import { useCustomersContext } from "../hooks/useCustomersContext.js";
-import CustomersTable from "./CustomerTable";
+import CustomerTable from "./CustomerTable";
 import CustomerForm from "./CustomerForm";
 import "./Customers.css"; // Import the CSS file
 
@@ -26,7 +26,7 @@ const CustomerDetails = () => {
   return (
     <div className="customers-container">
       <CustomerForm />
-      <CustomersTable handleDelete={handleDelete} tableTitle={tableTitle} />
+      <CustomerTable handleDelete={handleDelete} tableTitle={tableTitle} />
     </div>
   );
 };
