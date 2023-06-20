@@ -70,9 +70,17 @@ function App() {
             <Route
               path="/shifts"
               element={
-                <ShiftsContextProvider>
-                  <ShiftsPage />
-                </ShiftsContextProvider>
+                <CustomersContextProvider>
+                  <CaregiversContextProvider>
+                    <PatientsContextProvider>
+                      <ProductsContextProvider>
+                        <ShiftsContextProvider>
+                          <ShiftsPage />
+                        </ShiftsContextProvider>
+                      </ProductsContextProvider>
+                    </PatientsContextProvider>
+                  </CaregiversContextProvider>
+                </CustomersContextProvider>
               }
             />
           </Routes>
