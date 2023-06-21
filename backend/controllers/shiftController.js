@@ -41,6 +41,8 @@ const createShift = async (req, res) => {
     end_time,
   } = req.body;
 
+  console.log(req.body); //testing bug
+
   let emptyFields = [];
 
   if (!caregiver_id) {

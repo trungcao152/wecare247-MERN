@@ -25,7 +25,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
       end_time: new Date(end_time).toISOString(),
     };
 
-    console.log(shift); // New console log here
+    console.log(JSON.stringify(shift, null, 2)); // testing bug
 
     const response = await fetch(
       "https://wecare247-backend.onrender.com/api/shifts",
