@@ -88,28 +88,35 @@ const createCustomer = async (req, res) => {
   }
 };
 
-// update a customer
-const updateCustomer = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send(`No customer with id: ${id}`);
-
-  const updatedCustomer = { ...req.body, _id: id };
-
-  await Customer.findByIdAndUpdate(id, updatedCustomer, { new: true });
-
-  res.json(updatedCustomer);
-};
-
 // delete a customer
 const deleteCustomer = async (req, res) => {
   const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send(`No customer with id: ${id}`);
 
-  await Customer.findByIdAndRemove(id);
+  const customer = await Customer.findOneAndDelete({ _id: id });
 
-  res.json({ message: "Customer deleted successfully." });
+  if (!customer) {
+    return res.status(404).json({ error: "No such customer" });
+  }
+
+  res.status(200).json(customer);
+};
+
+// update a customer
+const updateCustomer = async (req, res) => {
+  const { id } = req.params;
+
+  const customer = await Customer.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    },
+    { new: true }
+  );
+
+  if (!customer) {
+    return res.status(404).json({ error: "No such customer" });
+  }
+  res.status(200).json(customer);
 };
 
 module.exports = {

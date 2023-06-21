@@ -62,29 +62,35 @@ const createProduct = async (req, res) => {
   }
 };
 
-// Update a product
+// delete a product
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+
+  const product = await Product.findOneAndDelete({ _id: id });
+
+  if (!product) {
+    return res.status(404).json({ error: "No such product" });
+  }
+
+  res.status(200).json(product);
+};
+
+// update a product
 const updateProduct = async (req, res) => {
   const { id } = req.params;
 
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send(`No product with id: ${id}`);
+  const product = await Product.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    },
+    { new: true }
+  );
 
-  const updatedProduct = { ...req.body, _id: id };
-
-  await Product.findByIdAndUpdate(id, updatedProduct, { new: true });
-
-  res.json(updatedProduct);
-};
-
-// Delete a product
-const deleteProduct = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send(`No product with id: ${id}`);
-
-  await Product.findByIdAndRemove(id);
-
-  res.json({ message: "Product deleted successfully." });
+  if (!product) {
+    return res.status(404).json({ error: "No such product" });
+  }
+  res.status(200).json(product);
 };
 
 module.exports = {

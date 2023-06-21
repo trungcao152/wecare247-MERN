@@ -103,28 +103,35 @@ const createPatient = async (req, res) => {
   }
 };
 
-// update a patient
-const updatePatient = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send(`No patient with id: ${id}`);
-
-  const updatedPatient = { ...req.body, _id: id };
-
-  await Patient.findByIdAndUpdate(id, updatedPatient, { new: true });
-
-  res.json(updatedPatient);
-};
-
 // delete a patient
 const deletePatient = async (req, res) => {
   const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send(`No patient with id: ${id}`);
 
-  await Patient.findByIdAndRemove(id);
+  const patient = await Patient.findOneAndDelete({ _id: id });
 
-  res.json({ message: "Patient deleted successfully." });
+  if (!patient) {
+    return res.status(404).json({ error: "No such patient" });
+  }
+
+  res.status(200).json(patient);
+};
+
+// update a patient
+const updatePatient = async (req, res) => {
+  const { id } = req.params;
+
+  const patient = await Patient.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    },
+    { new: true }
+  );
+
+  if (!patient) {
+    return res.status(404).json({ error: "No such patient" });
+  }
+  res.status(200).json(patient);
 };
 
 module.exports = {
