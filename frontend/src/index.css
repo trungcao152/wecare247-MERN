@@ -124,3 +124,10 @@ input.error {
   font-size: 1.5em; /* Adjust the font size to your preference */
   font-weight: bold;
 }
+/* customers page */
+.customers-page {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}

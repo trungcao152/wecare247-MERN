@@ -23,7 +23,7 @@ const CustomersPage = () => {
   }, [dispatch]);
 
   return (
-    <div className="home">
+    <div className="customers-page">
       <div className="customers">
         <CustomerDetails />
       </div>
