@@ -21,8 +21,8 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
       customer_id,
       patient_id,
       product_id,
-      start_time,
-      end_time,
+      start_time: new Date(start_time).toISOString(),
+      end_time: new Date(end_time).toISOString(),
     };
 
     console.log(shift); // New console log here
