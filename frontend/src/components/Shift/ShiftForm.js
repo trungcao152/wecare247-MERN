@@ -2,12 +2,15 @@ import { useState } from "react";
 import { useShiftsContext } from "../hooks/useShiftsContext";
 
 const ShiftForm = ({ caregivers, customers, patients, products }) => {
+  //testing
+  console.log(caregivers, customers, patients, products);
+
   const { dispatch } = useShiftsContext();
 
   const [caregiver_id, setCaregiverId] = useState("");
   const [customer_id, setCustomerId] = useState("");
   const [patient_id, setPatientId] = useState("");
-  const [product, setProduct] = useState("");
+  const [product_id, setProductId] = useState("");
   const [start_time, setStartTime] = useState("");
   const [end_time, setEndTime] = useState("");
 
@@ -17,10 +20,12 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
       caregiver_id,
       customer_id,
       patient_id,
-      product,
+      product_id,
       start_time,
       end_time,
     };
+
+    console.log(shift); // New console log here
 
     const response = await fetch(
       "https://wecare247-backend.onrender.com/api/shifts",
@@ -38,7 +43,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
       setCaregiverId("");
       setCustomerId("");
       setPatientId("");
-      setProduct("");
+      setProductId("");
       setStartTime("");
       setEndTime("");
       dispatch({ type: "CREATE_SHIFT", payload: json });
@@ -87,7 +92,9 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
         </select>
 
         <label>Product:</label>
-        <select onChange={(e) => setProduct(e.target.value)} value={product}>
+        <select
+          onChange={(e) => setProductId(e.target.value)}
+          value={product_id}>
           {products &&
             products.map((product) => (
               <option key={product._id} value={product._id}>

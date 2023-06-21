@@ -19,7 +19,7 @@ const shiftSchema = new Schema(
       ref: "Patient",
       required: true,
     },
-    product: {
+    product_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
       required: true,

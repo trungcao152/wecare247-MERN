@@ -36,7 +36,7 @@ const createShift = async (req, res) => {
     caregiver_id,
     customer_id,
     patient_id,
-    product,
+    product_id,
     start_time,
     end_time,
   } = req.body;
@@ -52,8 +52,8 @@ const createShift = async (req, res) => {
   if (!patient_id) {
     emptyFields.push("patient_id");
   }
-  if (!product) {
-    emptyFields.push("product");
+  if (!product_id) {
+    emptyFields.push("product_id");
   }
   if (!start_time) {
     emptyFields.push("start_time");
@@ -72,7 +72,7 @@ const createShift = async (req, res) => {
       caregiver_id,
       customer_id,
       patient_id,
-      product,
+      product_id,
       start_time,
       end_time,
     });
