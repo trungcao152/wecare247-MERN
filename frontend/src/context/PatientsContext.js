@@ -33,6 +33,9 @@ export const PatientsContextProvider = ({ children }) => {
     patients: null,
   });
 
+  // Log the state to the console
+  console.log("Patients State: ", state);
+
   return (
     <PatientsContext.Provider value={{ ...state, dispatch }}>
       {children}

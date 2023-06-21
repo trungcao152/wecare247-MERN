@@ -15,6 +15,9 @@ const ShiftDetails = () => {
 
   const { dispatch } = useShiftsContext();
 
+  //testing
+  console.log(caregivers, customers, patients, products);
+
   const handleDelete = async (id) => {
     const response = await fetch(
       "https://wecare247-backend.onrender.com/api/shifts/" + id,

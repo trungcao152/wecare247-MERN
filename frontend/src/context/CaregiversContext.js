@@ -35,6 +35,9 @@ export const CaregiversContextProvider = ({ children }) => {
     caregivers: null,
   });
 
+  // Log the state to the console
+  console.log("Caregivers State: ", state);
+
   return (
     <CaregiversContext.Provider value={{ ...state, dispatch }}>
       {children}

@@ -33,6 +33,9 @@ export const CustomersContextProvider = ({ children }) => {
     customers: null,
   });
 
+  // Log the state to the console
+  console.log("Customers State: ", state);
+
   return (
     <CustomersContext.Provider value={{ ...state, dispatch }}>
       {children}
