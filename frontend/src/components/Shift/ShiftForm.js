@@ -47,6 +47,8 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
       setStartTime("");
       setEndTime("");
       dispatch({ type: "CREATE_SHIFT", payload: json });
+    } else {
+      console.log(await response.json()); // Add this line
     }
   };
 
