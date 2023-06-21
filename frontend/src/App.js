@@ -33,57 +33,24 @@ function App() {
       <Router>
         <ConditionalNavbar />
         <div className="pages">
-          <Routes>
-            <Route path="/" element={<WelcomePage />} />
-            <Route
-              path="/caregivers"
-              element={
-                <CaregiversContextProvider>
-                  <CaregiversPage />
-                </CaregiversContextProvider>
-              }
-            />
-            <Route
-              path="/patients"
-              element={
-                <PatientsContextProvider>
-                  <PatientsPage />
-                </PatientsContextProvider>
-              }
-            />
-            <Route
-              path="/customers"
-              element={
-                <CustomersContextProvider>
-                  <CustomersPage />
-                </CustomersContextProvider>
-              }
-            />
-            <Route
-              path="/products"
-              element={
+          <CaregiversContextProvider>
+            <PatientsContextProvider>
+              <CustomersContextProvider>
                 <ProductsContextProvider>
-                  <ProductsPage />
+                  <ShiftsContextProvider>
+                    <Routes>
+                      <Route path="/" element={<WelcomePage />} />
+                      <Route path="/caregivers" element={<CaregiversPage />} />
+                      <Route path="/patients" element={<PatientsPage />} />
+                      <Route path="/customers" element={<CustomersPage />} />
+                      <Route path="/products" element={<ProductsPage />} />
+                      <Route path="/shifts" element={<ShiftsPage />} />
+                    </Routes>
+                  </ShiftsContextProvider>
                 </ProductsContextProvider>
-              }
-            />
-            <Route
-              path="/shifts"
-              element={
-                <CustomersContextProvider>
-                  <CaregiversContextProvider>
-                    <PatientsContextProvider>
-                      <ProductsContextProvider>
-                        <ShiftsContextProvider>
-                          <ShiftsPage />
-                        </ShiftsContextProvider>
-                      </ProductsContextProvider>
-                    </PatientsContextProvider>
-                  </CaregiversContextProvider>
-                </CustomersContextProvider>
-              }
-            />
-          </Routes>
+              </CustomersContextProvider>
+            </PatientsContextProvider>
+          </CaregiversContextProvider>
         </div>
       </Router>
     </div>
