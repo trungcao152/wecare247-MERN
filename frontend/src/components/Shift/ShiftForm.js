@@ -48,7 +48,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
       setEndTime("");
       dispatch({ type: "CREATE_SHIFT", payload: json });
     } else {
-      console.log(await response.json()); // Add this line
+      console.log(await response.json()); // Testing
     }
   };
 
@@ -64,7 +64,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
           {caregivers &&
             caregivers.map((caregiver) => (
               <option key={caregiver._id} value={caregiver._id}>
-                {caregiver.name}
+                {caregiver.employee_name}
               </option>
             ))}
         </select>
@@ -76,7 +76,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
           {customers &&
             customers.map((customer) => (
               <option key={customer._id} value={customer._id}>
-                {customer.name}
+                {customer.customer_name}
               </option>
             ))}
         </select>
@@ -88,7 +88,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
           {patients &&
             patients.map((patient) => (
               <option key={patient._id} value={patient._id}>
-                {patient.name}
+                {patient.patient_name}
               </option>
             ))}
         </select>
@@ -100,7 +100,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
           {products &&
             products.map((product) => (
               <option key={product._id} value={product._id}>
-                {product.name}
+                {product.product_name}
               </option>
             ))}
         </select>
