@@ -64,7 +64,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
           {caregivers &&
             caregivers.map((caregiver) => (
               <option key={caregiver._id} value={caregiver._id}>
-                {caregiver.caregiver._id}
+                {caregiver._id}
               </option>
             ))}
         </select>
@@ -76,7 +76,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
           {customers &&
             customers.map((customer) => (
               <option key={customer._id} value={customer._id}>
-                {customer.customer._id}
+                {customer._id}
               </option>
             ))}
         </select>
@@ -88,7 +88,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
           {patients &&
             patients.map((patient) => (
               <option key={patient._id} value={patient._id}>
-                {patient.patient._id}
+                {patient._id}
               </option>
             ))}
         </select>
@@ -100,7 +100,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
           {products &&
             products.map((product) => (
               <option key={product._id} value={product._id}>
-                {product.product._id}
+                {product._id}
               </option>
             ))}
         </select>
