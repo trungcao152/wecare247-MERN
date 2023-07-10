@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useShiftsContext } from "../hooks/useShiftsContext";
 
 const ShiftForm = ({ caregivers, customers, patients, products }) => {
-  //testing
-  console.log(caregivers, customers, patients, products);
+  console.log(caregivers, customers, patients, products); //testing
 
   const { dispatch } = useShiftsContext();
 
@@ -17,6 +16,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const shift = {
       shift_id,
       caregiver_id,
@@ -29,18 +29,22 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
 
     console.log(JSON.stringify(shift, null, 2)); // testing bug
 
-    const response = await fetch(
-      "https://wecare247-backend.onrender.com/api/shifts",
-      {
-        method: "POST",
-        body: JSON.stringify(shift),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    try {
+      const response = await fetch(
+        "https://wecare247-backend.onrender.com/api/shifts",
+        {
+          method: "POST",
+          body: JSON.stringify(shift),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    if (response.ok) {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const json = await response.json();
       setCaregiverId("");
       setCustomerId("");
@@ -49,8 +53,8 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
       setStartTime("");
       setEndTime("");
       dispatch({ type: "CREATE_SHIFT", payload: json });
-    } else {
-      console.log(await response.json()); // Testing
+    } catch (error) {
+      console.error("Error submitting form: ", error);
     }
   };
 

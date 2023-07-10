@@ -93,8 +93,10 @@ const createShift = async (req, res) => {
       start_time,
       end_time,
     });
+    console.log("Created Shift: ", shift); // log the created shift
     res.status(200).json(shift);
   } catch (error) {
+    console.error("Error creating shift: ", error); // log any errors that occur
     res.status(400).json({ error: error.message });
   }
 };
