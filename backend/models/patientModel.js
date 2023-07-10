@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 
 const patientSchema = new Schema(
   {
-    _id: {
+    patient_id: {
       type: String,
       required: true,
+      unique: true,
     },
     patient_name: {
       type: String,

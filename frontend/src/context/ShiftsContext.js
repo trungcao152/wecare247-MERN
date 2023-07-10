@@ -14,12 +14,14 @@ export const shiftsReducer = (state, action) => {
       };
     case "DELETE_SHIFT":
       return {
-        shifts: state.shifts.filter((c) => c._id !== action.payload._id),
+        shifts: state.shifts.filter(
+          (c) => c.shift_id !== action.payload.shift_id
+        ),
       };
     case "UPDATE_SHIFT":
       return {
         shifts: state.shifts.map((c) =>
-          c._id === action.payload._id ? action.payload : c
+          c.shift_id === action.payload.shift_id ? action.payload : c
         ),
       };
 

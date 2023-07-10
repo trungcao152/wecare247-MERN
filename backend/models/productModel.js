@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema(
   {
-    _id: {
+    product_id: {
       type: String,
       required: true,
+      unique: true,
     },
     product_name: {
       type: String,
@@ -23,5 +24,8 @@ const productSchema = new Schema(
   },
   { timestamps: true }
 );
+
+productSchema.set("toObject", { virtuals: true });
+productSchema.set("toJSON", { virtuals: true });
 
 module.exports = mongoose.model("Product", productSchema);

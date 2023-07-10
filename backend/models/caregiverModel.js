@@ -4,11 +4,12 @@ const Schema = mongoose.Schema;
 
 const caregiverSchema = new Schema(
   {
-    _id: {
+    caregiver_id: {
       type: String,
       required: true,
+      unique: true,
     },
-    employee_name: {
+    caregiver_name: {
       type: String,
       required: true,
     },

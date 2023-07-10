@@ -4,7 +4,7 @@ import { useProductsContext } from "../hooks/useProductsContext";
 const ProductForm = () => {
   const { dispatch } = useProductsContext();
 
-  const [_id, set_id] = useState("");
+  const [product_id, setProduct_id] = useState("");
   const [product_name, setProduct_name] = useState("");
   const [product_price, setProduct_price] = useState("");
   const [product_description, setProduct_description] = useState("");
@@ -14,7 +14,7 @@ const ProductForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const product = {
-      _id,
+      product_id,
       product_name,
       product_price,
       product_description,
@@ -39,7 +39,7 @@ const ProductForm = () => {
       setEmptyFields(json.emptyFields || []);
     }
     if (response.ok) {
-      set_id("");
+      setProduct_id("");
       setProduct_name("");
       setProduct_price("");
       setProduct_description("");
@@ -59,9 +59,9 @@ const ProductForm = () => {
         <label>Product ID:</label>
         <input
           type="text"
-          onChange={(e) => set_id(e.target.value)}
-          value={_id}
-          className={emptyFields.includes("_id") ? "error" : ""}
+          onChange={(e) => setProduct_id(e.target.value)}
+          value={product_id}
+          className={emptyFields.includes("product_id") ? "error" : ""}
         />
 
         <label>Product Name:</label>

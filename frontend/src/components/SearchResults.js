@@ -1,5 +1,6 @@
+/*
 import React, { useState, useEffect } from "react";
-import CaregiverTable from "./CaregiverTable";
+import CaregiverTable from "./Caregiver/CaregiverTable";
 
 const SearchResults = ({ results = [], searchQuery, searchSubmitted }) => {
   const [searching, setSearching] = useState(false);
@@ -47,3 +48,4 @@ const SearchResults = ({ results = [], searchQuery, searchSubmitted }) => {
 };
 
 export default SearchResults;
+*/

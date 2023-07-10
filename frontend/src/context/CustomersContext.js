@@ -14,12 +14,14 @@ export const customersReducer = (state, action) => {
       };
     case "DELETE_CUSTOMER":
       return {
-        customers: state.customers.filter((c) => c._id !== action.payload._id),
+        customers: state.customers.filter(
+          (c) => c.customer_id !== action.payload.customer_id
+        ),
       };
     case "UPDATE_CUSTOMER":
       return {
         customers: state.customers.map((c) =>
-          c._id === action.payload._id ? action.payload : c
+          c.customer_id === action.payload.customer_id ? action.payload : c
         ),
       };
 

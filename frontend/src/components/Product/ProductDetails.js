@@ -6,9 +6,9 @@ import "./Products.css"; // Import the CSS file
 const ProductDetails = () => {
   const { dispatch } = useProductsContext();
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (product_id) => {
     const response = await fetch(
-      "https://wecare247-backend.onrender.com/api/products/" + id,
+      "https://wecare247-backend.onrender.com/api/products/" + product_id,
       {
         method: "DELETE",
       }

@@ -14,12 +14,14 @@ export const productsReducer = (state, action) => {
       };
     case "DELETE_PRODUCT":
       return {
-        products: state.products.filter((c) => c._id !== action.payload._id),
+        products: state.products.filter(
+          (c) => c.product_id !== action.payload.product_id
+        ),
       };
     case "UPDATE_PRODUCT":
       return {
         products: state.products.map((c) =>
-          c._id === action.payload._id ? action.payload : c
+          c.product_id === action.payload.product_id ? action.payload : c
         ),
       };
 

@@ -10,7 +10,7 @@ const getPatients = async (req, res) => {
 // get one patient
 const getPatient = async (req, res) => {
   const { id } = req.params;
-  const patient = await Patient.findById(id);
+  const patient = await Patient.findById({ patient_id: id });
   if (!patient) {
     res.status(404).json({ message: "Patient not found" });
   } else {
@@ -21,7 +21,7 @@ const getPatient = async (req, res) => {
 // create a patient
 const createPatient = async (req, res) => {
   const {
-    _id,
+    patient_id,
     patient_name,
     patient_type,
     weight,
@@ -36,8 +36,8 @@ const createPatient = async (req, res) => {
 
   let emptyFields = [];
 
-  if (!_id) {
-    emptyFields.push("_id");
+  if (!patient_id) {
+    emptyFields.push("patient_id");
   }
   if (!patient_name) {
     emptyFields.push("patient_name");
@@ -74,7 +74,7 @@ const createPatient = async (req, res) => {
   }
 
   // Check if patient_id is unique
-  const existingPatient = await Patient.findOne({ _id });
+  const existingPatient = await Patient.findOne({ patient_id });
 
   if (existingPatient) {
     return res
@@ -85,7 +85,7 @@ const createPatient = async (req, res) => {
   // add doc to db
   try {
     const patient = await Patient.create({
-      _id,
+      patient_id,
       patient_name,
       patient_type,
       weight,
@@ -107,7 +107,7 @@ const createPatient = async (req, res) => {
 const deletePatient = async (req, res) => {
   const { id } = req.params;
 
-  const patient = await Patient.findOneAndDelete({ _id: id });
+  const patient = await Patient.findOneAndDelete({ patient_id: id });
 
   if (!patient) {
     return res.status(404).json({ error: "No such patient" });
@@ -121,7 +121,7 @@ const updatePatient = async (req, res) => {
   const { id } = req.params;
 
   const patient = await Patient.findOneAndUpdate(
-    { _id: id },
+    { patient_id: id },
     {
       ...req.body,
     },

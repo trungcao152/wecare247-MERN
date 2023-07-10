@@ -12,10 +12,10 @@ const getCaregivers = async (req, res) => {
 const getCaregiver = async (req, res) => {
   const { id } = req.params;
 
-  const caregiver = await Caregiver.findOne({ _id: id });
+  const caregiver = await Caregiver.findOne({ caregiver_id: id });
 
   if (!caregiver) {
-    return res.status(404).json({ error: "No such caregiver" });
+    return res.status(404).json({ error: "Caregiver not found" });
   }
 
   res.status(200).json(caregiver);
@@ -24,8 +24,8 @@ const getCaregiver = async (req, res) => {
 // create a new caregiver
 const createCaregiver = async (req, res) => {
   const {
-    _id,
-    employee_name,
+    caregiver_id,
+    caregiver_name,
     current_address,
     birth_year,
     skill_level,
@@ -40,11 +40,11 @@ const createCaregiver = async (req, res) => {
 
   let emptyFields = [];
 
-  if (!_id) {
-    emptyFields.push("_id");
+  if (!caregiver_id) {
+    emptyFields.push("caregiver_id");
   }
-  if (!employee_name) {
-    emptyFields.push("employee_name");
+  if (!caregiver_name) {
+    emptyFields.push("caregiver_name");
   }
   if (!current_address) {
     emptyFields.push("current_address");
@@ -81,19 +81,19 @@ const createCaregiver = async (req, res) => {
   }
 
   // Check if employee_id is unique
-  const existingCaregiver = await Caregiver.findOne({ _id });
+  const existingCaregiver = await Caregiver.findOne({ caregiver_id });
 
   if (existingCaregiver) {
     return res
       .status(400)
-      .json({ error: "employee_id must be unique", emptyFields });
+      .json({ error: "caregiver_id must be unique", emptyFields });
   }
 
   // add doc to db
   try {
     const caregiver = await Caregiver.create({
-      _id,
-      employee_name,
+      caregiver_id,
+      caregiver_name,
       current_address,
       birth_year,
       skill_level,
@@ -115,7 +115,7 @@ const createCaregiver = async (req, res) => {
 const deleteCaregiver = async (req, res) => {
   const { id } = req.params;
 
-  const caregiver = await Caregiver.findOneAndDelete({ _id: id });
+  const caregiver = await Caregiver.findOneAndDelete({ caregiver_id: id });
 
   if (!caregiver) {
     return res.status(404).json({ error: "No such caregiver" });
@@ -129,7 +129,7 @@ const updateCaregiver = async (req, res) => {
   const { id } = req.params;
 
   const caregiver = await Caregiver.findOneAndUpdate(
-    { _id: id },
+    { caregiver_id: id },
     {
       ...req.body,
     },

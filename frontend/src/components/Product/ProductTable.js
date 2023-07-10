@@ -18,7 +18,7 @@ const ProductRow = ({
   };
 
   return (
-    <tr key={product._id}>
+    <tr key={product.product_id}>
       {isEditing ? (
         <td colSpan={properties.length + 1}>
           <ProductEditForm product={product} setIsEditing={setIsEditing} />
@@ -30,7 +30,9 @@ const ProductRow = ({
           ))}
           <td>
             <button onClick={handleEdit}>Edit</button>
-            <button onClick={() => handleDelete(product._id)}>Delete</button>
+            <button onClick={() => handleDelete(product.product_id)}>
+              Delete
+            </button>
           </td>
         </>
       )}
@@ -50,7 +52,7 @@ const ProductTable = ({ handleDelete, tableTitle }) => {
   ];
 
   const properties = [
-    "_id",
+    "product_id",
     "product_name",
     "product_price",
     "product_description",
@@ -79,7 +81,7 @@ const ProductTable = ({ handleDelete, tableTitle }) => {
           {sortedItems &&
             sortedItems.map((product) => (
               <ProductRow
-                key={product._id}
+                key={product.product_id}
                 product={product}
                 handleDelete={handleDelete}
                 properties={properties}

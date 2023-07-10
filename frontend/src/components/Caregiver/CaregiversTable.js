@@ -18,7 +18,7 @@ const CaregiverRow = ({
   };
 
   return (
-    <tr key={caregiver._id}>
+    <tr key={caregiver.caregiver_id}>
       {isEditing ? (
         <td colSpan={properties.length + 1}>
           <CaregiverEditForm
@@ -33,7 +33,9 @@ const CaregiverRow = ({
           ))}
           <td>
             <button onClick={handleEdit}>Edit</button>
-            <button onClick={() => handleDelete(caregiver._id)}>Delete</button>
+            <button onClick={() => handleDelete(caregiver.caregiver_id)}>
+              Delete
+            </button>
           </td>
         </>
       )}
@@ -61,7 +63,7 @@ const CaregiversTable = ({ handleDelete, tableTitle }) => {
   ];
 
   const properties = [
-    "_id",
+    "caregiver_id",
     "employee_name",
     "current_address",
     "birth_year",
@@ -98,7 +100,7 @@ const CaregiversTable = ({ handleDelete, tableTitle }) => {
           {sortedItems &&
             sortedItems.map((caregiver) => (
               <CaregiverRow
-                key={caregiver._id}
+                key={caregiver.caregiver_id}
                 caregiver={caregiver}
                 handleDelete={handleDelete}
                 properties={properties}

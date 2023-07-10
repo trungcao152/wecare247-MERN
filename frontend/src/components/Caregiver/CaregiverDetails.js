@@ -6,9 +6,9 @@ import "./Caregivers.css"; // Import the CSS file
 const CaregiverDetails = () => {
   const { dispatch } = useCaregiversContext();
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (caregiver_id) => {
     const response = await fetch(
-      "https://wecare247-backend.onrender.com/api/caregivers/" + id,
+      "https://wecare247-backend.onrender.com/api/caregivers/" + caregiver_id,
       {
         method: "DELETE",
       }

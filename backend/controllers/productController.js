@@ -9,7 +9,8 @@ const getProducts = async (req, res) => {
 
 // Get product by ID
 const getProduct = async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  const { id } = req.params;
+  const product = await Product.findById({ product_id: id });
   if (product) {
     res.status(200).json(product);
   } else {
@@ -19,12 +20,13 @@ const getProduct = async (req, res) => {
 
 // create a new product
 const createProduct = async (req, res) => {
-  const { _id, product_name, product_price, product_description } = req.body;
+  const { product_id, product_name, product_price, product_description } =
+    req.body;
 
   let emptyFields = [];
 
-  if (!_id) {
-    emptyFields.push("_id");
+  if (!product_id) {
+    emptyFields.push("product_id");
   }
   if (!product_name) {
     emptyFields.push("product_name");
@@ -40,7 +42,7 @@ const createProduct = async (req, res) => {
   }
 
   // Check if product_id is unique
-  const existingProduct = await Product.findOne({ _id });
+  const existingProduct = await Product.findOne({ product_id });
 
   if (existingProduct) {
     return res
@@ -51,7 +53,7 @@ const createProduct = async (req, res) => {
   // add doc to db
   try {
     const product = await Product.create({
-      _id,
+      product_id,
       product_name,
       product_price,
       product_description,
@@ -66,7 +68,7 @@ const createProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
 
-  const product = await Product.findOneAndDelete({ _id: id });
+  const product = await Product.findOneAndDelete({ product_id: id });
 
   if (!product) {
     return res.status(404).json({ error: "No such product" });
@@ -80,7 +82,7 @@ const updateProduct = async (req, res) => {
   const { id } = req.params;
 
   const product = await Product.findOneAndUpdate(
-    { _id: id },
+    { product_id: id },
     {
       ...req.body,
     },

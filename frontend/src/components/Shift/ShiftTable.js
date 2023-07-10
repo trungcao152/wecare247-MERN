@@ -22,7 +22,7 @@ const ShiftRow = ({
   };
 
   return (
-    <tr key={shift._id}>
+    <tr key={shift.shift_id}>
       {isEditing ? (
         <td colSpan={properties.length + 1}>
           <ShiftEditForm
@@ -41,7 +41,7 @@ const ShiftRow = ({
           ))}
           <td>
             <button onClick={handleEdit}>Edit</button>
-            <button onClick={() => handleDelete(shift._id)}>Delete</button>
+            <button onClick={() => handleDelete(shift.shift_id)}>Delete</button>
           </td>
         </>
       )}
@@ -99,7 +99,7 @@ const ShiftTable = ({
           {sortedItems &&
             sortedItems.map((shift) => (
               <ShiftRow
-                key={shift._id}
+                key={shift.shift_id}
                 shift={shift}
                 handleDelete={handleDelete}
                 caregivers={caregivers}

@@ -4,7 +4,7 @@ import { useCaregiversContext } from "../hooks/useCaregiversContext";
 const CaregiverForm = () => {
   const { dispatch } = useCaregiversContext();
 
-  const [_id, set_id] = useState("");
+  const [caregiver_id, setCaregiver_id] = useState("");
   const [employee_name, setEmployee_name] = useState("");
   const [current_address, setCurrent_address] = useState("");
   const [birth_year, setBirth_year] = useState("");
@@ -23,7 +23,7 @@ const CaregiverForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const caregiver = {
-      _id,
+      caregiver_id,
       employee_name,
       current_address,
       birth_year,
@@ -56,7 +56,7 @@ const CaregiverForm = () => {
       setEmptyFields(json.emptyFields || []);
     }
     if (response.ok) {
-      set_id("");
+      setCaregiver_id("");
       setEmployee_name("");
       setCurrent_address("");
       setBirth_year("");
@@ -81,12 +81,12 @@ const CaregiverForm = () => {
       <form className="create" onSubmit={handleSubmit}>
         <h3>Add a New Caregiver</h3>
 
-        <label>Employee ID:</label>
+        <label>Caregiver ID:</label>
         <input
           type="text"
-          onChange={(e) => set_id(e.target.value)}
-          value={_id}
-          className={emptyFields.includes("_id") ? "error" : ""}
+          onChange={(e) => setCaregiver_id(e.target.value)}
+          value={caregiver_id}
+          className={emptyFields.includes("caregiver_id") ? "error" : ""}
         />
 
         <label>Name:</label>

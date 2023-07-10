@@ -15,13 +15,13 @@ export const caregiversReducer = (state, action) => {
     case "DELETE_CAREGIVER":
       return {
         caregivers: state.caregivers.filter(
-          (c) => c._id !== action.payload._id
+          (c) => c.caregiver_id !== action.payload.caregiver_id
         ),
       };
     case "UPDATE_CAREGIVER":
       return {
         caregivers: state.caregivers.map((c) =>
-          c._id === action.payload._id ? action.payload : c
+          c.caregiver_id === action.payload.caregiver_id ? action.payload : c
         ),
       };
 

@@ -18,7 +18,7 @@ const CustomerRow = ({
   };
 
   return (
-    <tr key={customer._id}>
+    <tr key={customer.customer_id}>
       {isEditing ? (
         <td colSpan={properties.length + 1}>
           <CustomerEditForm customer={customer} setIsEditing={setIsEditing} />
@@ -30,7 +30,9 @@ const CustomerRow = ({
           ))}
           <td>
             <button onClick={handleEdit}>Edit</button>
-            <button onClick={() => handleDelete(customer._id)}>Delete</button>
+            <button onClick={() => handleDelete(customer.customer_id)}>
+              Delete
+            </button>
           </td>
         </>
       )}
@@ -54,7 +56,7 @@ const CustomerTable = ({ handleDelete, tableTitle }) => {
   ];
 
   const properties = [
-    "_id",
+    "customer_id",
     "customer_name",
     "customer_phone",
     "customer_email",
@@ -87,7 +89,7 @@ const CustomerTable = ({ handleDelete, tableTitle }) => {
           {sortedItems &&
             sortedItems.map((customer) => (
               <CustomerRow
-                key={customer._id}
+                key={customer.customer_id}
                 customer={customer}
                 handleDelete={handleDelete}
                 properties={properties}

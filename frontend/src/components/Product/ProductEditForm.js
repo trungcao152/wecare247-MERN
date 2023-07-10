@@ -14,7 +14,8 @@ const ProductEditForm = ({ product, setIsEditing }) => {
     event.preventDefault();
 
     const response = await fetch(
-      "https://wecare247-backend.onrender.com/api/products/" + product._id,
+      "https://wecare247-backend.onrender.com/api/products/" +
+        product.product_id,
       {
         method: "PUT",
         headers: {

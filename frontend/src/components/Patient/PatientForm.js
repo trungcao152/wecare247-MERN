@@ -4,7 +4,7 @@ import { usePatientsContext } from "../hooks/usePatientsContext";
 const PatientForm = () => {
   const { dispatch } = usePatientsContext();
 
-  const [_id, set_id] = useState("");
+  const [patient_id, setPatient_id] = useState("");
   const [patient_name, setPatient_name] = useState("");
   const [patient_type, setPatient_type] = useState("");
   const [weight, setWeight] = useState("");
@@ -21,7 +21,7 @@ const PatientForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const patient = {
-      _id,
+      patient_id,
       patient_name,
       patient_type,
       weight,
@@ -33,6 +33,8 @@ const PatientForm = () => {
       nebuliser,
       patient_condition,
     };
+
+    console.log("patient object:", patient);
 
     const response = await fetch(
       "https://wecare247-backend.onrender.com/api/patients",
@@ -51,7 +53,7 @@ const PatientForm = () => {
       setEmptyFields(json.emptyFields || []);
     }
     if (response.ok) {
-      set_id("");
+      setPatient_id("");
       setPatient_name("");
       setPatient_type("");
       setWeight("");
@@ -78,9 +80,9 @@ const PatientForm = () => {
         <label>Patient ID:</label>
         <input
           type="text"
-          onChange={(e) => set_id(e.target.value)}
-          value={_id}
-          className={emptyFields.includes("_id") ? "error" : ""}
+          onChange={(e) => setPatient_id(e.target.value)}
+          value={patient_id}
+          className={emptyFields.includes("patient_id") ? "error" : ""}
         />
 
         <label>Name:</label>

@@ -40,7 +40,8 @@ const CaregiverEditForm = ({ caregiver, setIsEditing }) => {
     };
 
     const response = await fetch(
-      "https://wecare247-backend.onrender.com/api/caregivers/" + caregiver._id,
+      "https://wecare247-backend.onrender.com/api/caregivers/" +
+        caregiver.caregiver_id,
       {
         method: "PUT",
         headers: {

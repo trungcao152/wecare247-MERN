@@ -58,7 +58,7 @@ const ShiftEditForm = ({
     };
 
     const response = await fetch(
-      "https://wecare247-backend.onrender.com/api/shifts/" + shift._id,
+      "https://wecare247-backend.onrender.com/api/shifts/" + shift.shift_id,
       {
         method: "PUT",
         headers: {
@@ -87,7 +87,7 @@ const ShiftEditForm = ({
           value={formState.caregiver_id}
           onChange={handleChange}>
           {caregivers.map((caregiver) => (
-            <option key={caregiver._id} value={caregiver._id}>
+            <option key={caregiver.caregiver_id} value={caregiver.caregiver_id}>
               {caregiver.name}
             </option>
           ))}
@@ -100,7 +100,7 @@ const ShiftEditForm = ({
           value={formState.customer_id}
           onChange={handleChange}>
           {customers.map((customer) => (
-            <option key={customer._id} value={customer._id}>
+            <option key={customer.customer_id} value={customer.customer_id}>
               {customer.name}
             </option>
           ))}
@@ -113,7 +113,7 @@ const ShiftEditForm = ({
           value={formState.patient_id}
           onChange={handleChange}>
           {patients.map((patient) => (
-            <option key={patient._id} value={patient._id}>
+            <option key={patient.patient_id} value={patient.patient_id}>
               {patient.name}
             </option>
           ))}
@@ -126,7 +126,7 @@ const ShiftEditForm = ({
           value={formState.product}
           onChange={handleChange}>
           {products.map((product) => (
-            <option key={product._id} value={product._id}>
+            <option key={product.product_id} value={product.product_id}>
               {product.name}
             </option>
           ))}

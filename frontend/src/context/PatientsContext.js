@@ -14,12 +14,14 @@ export const patientsReducer = (state, action) => {
       };
     case "DELETE_PATIENT":
       return {
-        patients: state.patients.filter((c) => c._id !== action.payload._id),
+        patients: state.patients.filter(
+          (c) => c.patient_id !== action.payload.patient_id
+        ),
       };
     case "UPDATE_PATIENT":
       return {
         patients: state.patients.map((c) =>
-          c._id === action.payload._id ? action.payload : c
+          c.patient_id === action.payload.patient_id ? action.payload : c
         ),
       };
 

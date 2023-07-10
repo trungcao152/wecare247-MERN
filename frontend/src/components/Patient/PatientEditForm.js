@@ -14,7 +14,8 @@ const PatientEditForm = ({ patient, setIsEditing }) => {
     event.preventDefault();
 
     const response = await fetch(
-      "https://wecare247-backend.onrender.com/api/patients/" + patient._id,
+      "https://wecare247-backend.onrender.com/api/patients/" +
+        patient.patient_id,
       {
         method: "PUT",
         headers: {

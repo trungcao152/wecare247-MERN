@@ -4,7 +4,7 @@ import { useCustomersContext } from "../hooks/useCustomersContext.js";
 const CustomerForm = () => {
   const { dispatch } = useCustomersContext();
 
-  const [_id, set_id] = useState("");
+  const [customer_id, setCustomer_id] = useState("");
   const [customer_name, setCustomer_name] = useState("");
   const [customer_phone, setCustomer_phone] = useState("");
   const [customer_email, setCustomer_email] = useState("");
@@ -18,7 +18,7 @@ const CustomerForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const customer = {
-      _id,
+      customer_id,
       customer_name,
       customer_phone,
       customer_email,
@@ -47,7 +47,7 @@ const CustomerForm = () => {
       setEmptyFields(json.emptyFields || []);
     }
     if (response.ok) {
-      set_id("");
+      setCustomer_id("");
       setCustomer_name("");
       setCustomer_phone("");
       setCustomer_email("");
@@ -71,9 +71,9 @@ const CustomerForm = () => {
         <label>Customer ID:</label>
         <input
           type="text"
-          onChange={(e) => set_id(e.target.value)}
-          value={_id}
-          className={emptyFields.includes("_id") ? "error" : ""}
+          onChange={(e) => setCustomer_id(e.target.value)}
+          value={customer_id}
+          className={emptyFields.includes("customer_id") ? "error" : ""}
         />
 
         <label>Name:</label>

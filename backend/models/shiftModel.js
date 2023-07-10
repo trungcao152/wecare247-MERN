@@ -4,6 +4,11 @@ const Schema = mongoose.Schema;
 
 const shiftSchema = new Schema(
   {
+    shift_id: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     caregiver_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Caregiver",

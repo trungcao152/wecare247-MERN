@@ -40,7 +40,8 @@ const CustomerEditForm = ({ customer, setIsEditing }) => {
     };
 
     const response = await fetch(
-      "https://wecare247-backend.onrender.com/api/customers/" + customer._id,
+      "https://wecare247-backend.onrender.com/api/customers/" +
+        customer.customer_id,
       {
         method: "PUT",
         headers: {

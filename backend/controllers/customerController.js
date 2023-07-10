@@ -10,7 +10,7 @@ const getCustomers = async (req, res) => {
 // get one customer
 const getCustomer = async (req, res) => {
   const { id } = req.params;
-  const customer = await Customer.findById(id);
+  const customer = await Customer.findById({ customer_id: id });
   if (!customer) {
     res.status(404).json({ message: "Customer not found" });
   } else {
@@ -21,7 +21,7 @@ const getCustomer = async (req, res) => {
 // create a customer
 const createCustomer = async (req, res) => {
   const {
-    _id,
+    customer_id,
     customer_name,
     customer_phone,
     customer_email,
@@ -33,8 +33,8 @@ const createCustomer = async (req, res) => {
 
   let emptyFields = [];
 
-  if (!_id) {
-    emptyFields.push("_id");
+  if (customer_id) {
+    emptyFields.push("customer_id");
   }
   if (!customer_name) {
     emptyFields.push("customer_name");
@@ -62,7 +62,7 @@ const createCustomer = async (req, res) => {
   }
 
   // Check if customer_id is unique
-  const existingCustomer = await Customer.findOne({ _id });
+  const existingCustomer = await Customer.findOne({ customer_id });
 
   if (existingCustomer) {
     return res
@@ -73,7 +73,7 @@ const createCustomer = async (req, res) => {
   // add doc to db
   try {
     const customer = await Customer.create({
-      _id,
+      customer_id,
       customer_name,
       customer_phone,
       customer_email,
@@ -92,7 +92,7 @@ const createCustomer = async (req, res) => {
 const deleteCustomer = async (req, res) => {
   const { id } = req.params;
 
-  const customer = await Customer.findOneAndDelete({ _id: id });
+  const customer = await Customer.findOneAndDelete({ customer_id: id });
 
   if (!customer) {
     return res.status(404).json({ error: "No such customer" });
@@ -106,7 +106,7 @@ const updateCustomer = async (req, res) => {
   const { id } = req.params;
 
   const customer = await Customer.findOneAndUpdate(
-    { _id: id },
+    { customer_id: id },
     {
       ...req.body,
     },

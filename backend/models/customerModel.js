@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 
 const customerSchema = new Schema(
   {
-    _id: {
+    customer_id: {
       type: String,
       required: true,
+      unique: true,
     },
     customer_name: {
       type: String,

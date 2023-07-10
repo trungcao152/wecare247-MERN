@@ -18,9 +18,9 @@ const ShiftDetails = () => {
   //testing
   console.log(caregivers, customers, patients, products);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (shift_id) => {
     const response = await fetch(
-      "https://wecare247-backend.onrender.com/api/shifts/" + id,
+      "https://wecare247-backend.onrender.com/api/shifts/" + shift_id,
       {
         method: "DELETE",
       }

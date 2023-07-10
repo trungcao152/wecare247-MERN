@@ -18,7 +18,7 @@ const PatientRow = ({
   };
 
   return (
-    <tr key={patient._id}>
+    <tr key={patient.patient_id}>
       {isEditing ? (
         <td colSpan={properties.length + 1}>
           <PatientEditForm patient={patient} setIsEditing={setIsEditing} />
@@ -30,7 +30,9 @@ const PatientRow = ({
           ))}
           <td>
             <button onClick={handleEdit}>Edit</button>
-            <button onClick={() => handleDelete(patient._id)}>Delete</button>
+            <button onClick={() => handleDelete(patient.patient_id)}>
+              Delete
+            </button>
           </td>
         </>
       )}
@@ -38,7 +40,7 @@ const PatientRow = ({
   );
 };
 
-const PatientsTable = ({ handleDelete, tableTitle }) => {
+const PatientTable = ({ handleDelete, tableTitle }) => {
   const { patients = [] } = usePatientsContext();
   const { sortedItems, requestSort, sortingKeys } = useSortableData(patients);
 
@@ -57,7 +59,7 @@ const PatientsTable = ({ handleDelete, tableTitle }) => {
   ];
 
   const properties = [
-    "_id",
+    "patient_id",
     "patient_name",
     "patient_type",
     "weight",
@@ -93,7 +95,7 @@ const PatientsTable = ({ handleDelete, tableTitle }) => {
           {sortedItems &&
             sortedItems.map((patient) => (
               <PatientRow
-                key={patient._id}
+                key={patient.patient_id}
                 patient={patient}
                 handleDelete={handleDelete}
                 properties={properties}
@@ -106,4 +108,4 @@ const PatientsTable = ({ handleDelete, tableTitle }) => {
   );
 };
 
-export default PatientsTable;
+export default PatientTable;
