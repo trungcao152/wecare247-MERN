@@ -10,7 +10,7 @@ const ShiftEditForm = ({
   products,
 }) => {
   //testing
-  console.log(caregivers, customers, patients, products);
+  console.log("Test 1:", caregivers, customers, patients, products); //Test 1
 
   const formatDate = (date) => {
     const d = new Date(date);
@@ -30,6 +30,8 @@ const ShiftEditForm = ({
     start_time: formattedStartTime,
     end_time: formattedEndTime,
   });
+
+  console.log("Test 4:", shift); //Test 4
 
   const { dispatch } = useShiftsContext();
 
@@ -77,6 +79,12 @@ const ShiftEditForm = ({
       window.alert("There is no such shift");
     }
   };
+
+  // Test 3: Check whether the objects in your arrays actually have the properties
+  console.log("Test 3: Caregivers:", caregivers[0]);
+  console.log("Test 3: Customers:", customers[0]);
+  console.log("Test 3: Patients:", patients[0]);
+  console.log("Test 3: Products:", products[0]);
 
   return (
     <form onSubmit={handleSubmit}>
