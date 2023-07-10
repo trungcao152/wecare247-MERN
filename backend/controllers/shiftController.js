@@ -123,7 +123,7 @@ const updateShift = async (req, res) => {
     {
       ...req.body,
     },
-    { new: true }
+    { new: true, runValidators: true }
   );
 
   if (!shift) {
