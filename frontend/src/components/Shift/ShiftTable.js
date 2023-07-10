@@ -20,7 +20,6 @@ const ShiftRow = ({
   const handleEdit = () => {
     setIsEditing(!isEditing);
   };
-  console.log(shift); //testing
 
   return (
     <tr key={shift.shift_id}>
@@ -82,10 +81,23 @@ const ShiftTable = ({
   ];
 
   const formatCellContent = (shift, property) => {
-    if (property === "start_time" || property === "end_time") {
-      return new Intl.DateTimeFormat("en-GB").format(new Date(shift[property]));
+    switch (property) {
+      case "start_time":
+      case "end_time":
+        return new Intl.DateTimeFormat("en-GB").format(
+          new Date(shift[property])
+        );
+      case "caregiver_id":
+        return shift.caregiver?.id || "";
+      case "customer_id":
+        return shift.customer?.id || "";
+      case "patient_id":
+        return shift.patient?.id || "";
+      case "product_id":
+        return shift.product?.id || "";
+      default:
+        return shift[property];
     }
-    return shift[property];
   };
 
   return (
