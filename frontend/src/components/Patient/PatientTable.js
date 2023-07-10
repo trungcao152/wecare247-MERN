@@ -77,6 +77,10 @@ const PatientTable = ({ handleDelete, tableTitle }) => {
       return new Intl.DateTimeFormat("en-GB").format(
         new Date(patient[property])
       );
+    } else if (
+      ["ulcer", "neural_disease", "endo_tube", "nebuliser"].includes(property)
+    ) {
+      return patient[property] ? "Yes" : "No";
     }
     return patient[property];
   };
