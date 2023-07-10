@@ -33,7 +33,7 @@ const createCustomer = async (req, res) => {
 
   let emptyFields = [];
 
-  if (customer_id) {
+  if (!customer_id) {
     emptyFields.push("customer_id");
   }
   if (!customer_name) {
