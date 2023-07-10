@@ -20,6 +20,7 @@ const ShiftRow = ({
   const handleEdit = () => {
     setIsEditing(!isEditing);
   };
+  console.log(shift); //testing
 
   return (
     <tr key={shift.shift_id}>
@@ -61,6 +62,7 @@ const ShiftTable = ({
   const { sortedItems, requestSort, sortingKeys } = useSortableData(shifts);
 
   const columns = [
+    "Shift ID",
     "Caregiver ID",
     "Customer ID",
     "Patient ID",
@@ -70,6 +72,7 @@ const ShiftTable = ({
   ];
 
   const properties = [
+    "shift_id",
     "caregiver_id",
     "customer_id",
     "patient_id",
