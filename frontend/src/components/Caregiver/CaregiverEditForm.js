@@ -64,12 +64,12 @@ const CaregiverEditForm = ({ caregiver, setIsEditing }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="employee_name">
+      <label htmlFor="caregiver_name">
         Name:
         <input
           type="text"
-          name="employee_name"
-          value={formState.employee_name}
+          name="caregiver_name"
+          value={formState.caregiver_name}
           onChange={handleChange}
         />
       </label>
@@ -119,21 +119,21 @@ const CaregiverEditForm = ({ caregiver, setIsEditing }) => {
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="employee_phone">
+      <label htmlFor="caregiver_phone">
         Phone Number:
         <input
           type="number"
-          name="employee_phone"
-          value={formState.employee_phone}
+          name="caregiver_phone"
+          value={formState.caregiver_phone}
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="employee_gender">
+      <label htmlFor="caregiver_gender">
         Gender:
         <input
           type="text"
-          name="employee_gender"
-          value={formState.employee_gender}
+          name="caregiver_gender"
+          value={formState.caregiver_gender}
           onChange={handleChange}
         />
       </label>

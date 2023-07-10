@@ -5,15 +5,15 @@ const CaregiverForm = () => {
   const { dispatch } = useCaregiversContext();
 
   const [caregiver_id, setCaregiver_id] = useState("");
-  const [employee_name, setEmployee_name] = useState("");
+  const [caregiver_name, setCaregiver_name] = useState("");
   const [current_address, setCurrent_address] = useState("");
   const [birth_year, setBirth_year] = useState("");
   const [skill_level, setSkill_level] = useState("");
   const [preferred_working_location, setPreferred_working_location] =
     useState("");
   const [working_status, setWorking_status] = useState("");
-  const [employee_phone, setEmployee_phone] = useState("");
-  const [employee_gender, setEmployee_gender] = useState("");
+  const [caregiver_phone, setCaregiver_phone] = useState("");
+  const [caregiver_gender, setCaregiver_gender] = useState("");
   const [national_id, setNational_id] = useState("");
   const [national_id_issue_date, setNational_id_issue_date] = useState("");
   const [age, setAge] = useState("");
@@ -24,14 +24,14 @@ const CaregiverForm = () => {
     e.preventDefault();
     const caregiver = {
       caregiver_id,
-      employee_name,
+      caregiver_name,
       current_address,
       birth_year,
       skill_level,
       preferred_working_location,
       working_status,
-      employee_phone,
-      employee_gender,
+      caregiver_phone,
+      caregiver_gender,
       national_id,
       national_id_issue_date,
       age,
@@ -57,14 +57,14 @@ const CaregiverForm = () => {
     }
     if (response.ok) {
       setCaregiver_id("");
-      setEmployee_name("");
+      setCaregiver_name("");
       setCurrent_address("");
       setBirth_year("");
       setSkill_level("");
       setPreferred_working_location("");
       setWorking_status("");
-      setEmployee_phone("");
-      setEmployee_gender("");
+      setCaregiver_phone("");
+      setCaregiver_gender("");
       setNational_id("");
       setNational_id_issue_date("");
       setAge("");
@@ -92,9 +92,9 @@ const CaregiverForm = () => {
         <label>Name:</label>
         <input
           type="text"
-          onChange={(e) => setEmployee_name(e.target.value)}
-          value={employee_name}
-          className={emptyFields.includes("employee_name") ? "error" : ""}
+          onChange={(e) => setCaregiver_name(e.target.value)}
+          value={caregiver_name}
+          className={emptyFields.includes("caregiver_name") ? "error" : ""}
         />
 
         <label>Current Address:</label>
@@ -142,17 +142,17 @@ const CaregiverForm = () => {
         <label>Phone Number:</label>
         <input
           type="number"
-          onChange={(e) => setEmployee_phone(e.target.value)}
-          value={employee_phone}
-          className={emptyFields.includes("employee_phone") ? "error" : ""}
+          onChange={(e) => setCaregiver_phone(e.target.value)}
+          value={caregiver_phone}
+          className={emptyFields.includes("caregiver_phone") ? "error" : ""}
         />
 
         <label>Gender:</label>
         <input
           type="text"
-          onChange={(e) => setEmployee_gender(e.target.value)}
-          value={employee_gender}
-          className={emptyFields.includes("employee_gender") ? "error" : ""}
+          onChange={(e) => setCaregiver_gender(e.target.value)}
+          value={caregiver_gender}
+          className={emptyFields.includes("caregiver_gender") ? "error" : ""}
         />
 
         <label>National ID:</label>

@@ -64,14 +64,14 @@ const CaregiversTable = ({ handleDelete, tableTitle }) => {
 
   const properties = [
     "caregiver_id",
-    "employee_name",
+    "caregiver_name",
     "current_address",
     "birth_year",
     "skill_level",
     "preferred_working_location",
     "working_status",
-    "employee_phone",
-    "employee_gender",
+    "caregiver_phone",
+    "caregiver_gender",
     "national_id",
     "national_id_issue_date",
     "age",

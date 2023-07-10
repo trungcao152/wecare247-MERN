@@ -31,8 +31,8 @@ const createCaregiver = async (req, res) => {
     skill_level,
     preferred_working_location,
     working_status,
-    employee_phone,
-    employee_gender,
+    caregiver_phone,
+    caregiver_gender,
     national_id,
     national_id_issue_date,
     age,
@@ -61,11 +61,11 @@ const createCaregiver = async (req, res) => {
   // working_status can be null
   // if (!working_status) {
   //  emptyFields.push("working_status");
-  if (!employee_phone) {
-    emptyFields.push("employee_phone");
+  if (!caregiver_phone) {
+    emptyFields.push("caregiver_phone");
   }
-  if (!employee_gender) {
-    emptyFields.push("employee_gender");
+  if (!caregiver_gender) {
+    emptyFields.push("caregiver_gender");
   }
   if (!national_id) {
     emptyFields.push("national_id");
@@ -80,7 +80,7 @@ const createCaregiver = async (req, res) => {
     return res.status(400).json({ error: "Please fill in all the fields" });
   }
 
-  // Check if employee_id is unique
+  // Check if caregiver_id is unique
   const existingCaregiver = await Caregiver.findOne({ caregiver_id });
 
   if (existingCaregiver) {
@@ -99,8 +99,8 @@ const createCaregiver = async (req, res) => {
       skill_level,
       preferred_working_location,
       working_status,
-      employee_phone,
-      employee_gender,
+      caregiver_phone,
+      caregiver_gender,
       national_id,
       national_id_issue_date,
       age,

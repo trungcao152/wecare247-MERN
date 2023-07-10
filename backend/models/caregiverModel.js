@@ -33,11 +33,11 @@ const caregiverSchema = new Schema(
       type: String,
       required: false,
     },
-    employee_phone: {
+    caregiver_phone: {
       type: String,
       required: true,
     },
-    employee_gender: {
+    caregiver_gender: {
       type: String,
       required: true,
     },
