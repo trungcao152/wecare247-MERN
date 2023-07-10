@@ -24,10 +24,10 @@ const ShiftEditForm = ({
 
   const [formState, setFormState] = useState({
     ...shift,
-    caregiver_id: shift.caregiver.caregiver_id,
-    customer_id: shift.customer.customer_id,
-    patient_id: shift.patient.patient_id,
-    product_id: shift.product.product_id,
+    caregiver_id: shift.caregiver.caregiver_id.toString(),
+    customer_id: shift.customer.customer_id.toString(),
+    patient_id: shift.patient.patient_id.toString(),
+    product_id: shift.product.product_id.toString(),
     start_time: formattedStartTime,
     end_time: formattedEndTime,
   });
