@@ -110,7 +110,7 @@ const ShiftEditForm = ({
           onChange={handleChange}>
           {customers.map((customer) => (
             <option key={customer.customer_id} value={customer.customer_id}>
-              {customer.caregiver_id}
+              {customer.customer_id}
             </option>
           ))}
         </select>
@@ -123,7 +123,7 @@ const ShiftEditForm = ({
           onChange={handleChange}>
           {patients.map((patient) => (
             <option key={patient.patient_id} value={patient.patient_id}>
-              {patient.caregiver_id}
+              {patient.patient_id}
             </option>
           ))}
         </select>
@@ -136,7 +136,7 @@ const ShiftEditForm = ({
           onChange={handleChange}>
           {products.map((product) => (
             <option key={product.product_id} value={product.product_id}>
-              {product.caregiver_id}
+              {product.product_id}
             </option>
           ))}
         </select>
