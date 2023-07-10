@@ -7,6 +7,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
 
   const { dispatch } = useShiftsContext();
 
+  const [shift_id, setShiftId] = useState("");
   const [caregiver_id, setCaregiverId] = useState("");
   const [customer_id, setCustomerId] = useState("");
   const [patient_id, setPatientId] = useState("");
@@ -17,6 +18,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const shift = {
+      shift_id,
       caregiver_id,
       customer_id,
       patient_id,
@@ -56,6 +58,13 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
     <div className="shift-form">
       <form onSubmit={handleSubmit}>
         <h3>Add a New Shift</h3>
+
+        <label>Shift ID:</label>
+        <input
+          type="text"
+          onChange={(e) => setShiftId(e.target.value)}
+          value={shift_id}
+        />
 
         <label>Caregiver:</label>
         <select
