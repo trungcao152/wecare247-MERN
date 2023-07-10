@@ -81,6 +81,7 @@ const ShiftTable = ({
   ];
 
   const formatCellContent = (shift, property) => {
+    console.log(shift); // Add this line
     switch (property) {
       case "start_time":
       case "end_time":
