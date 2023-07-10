@@ -9,22 +9,22 @@ const shiftSchema = new Schema(
       required: true,
       unique: true,
     },
-    caregiver_id: {
+    caregiver: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Caregiver",
       required: true,
     },
-    customer_id: {
+    customer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Customer",
       required: true,
     },
-    patient_id: {
+    patient: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Patient",
       required: true,
     },
-    product_id: {
+    product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
       required: true,

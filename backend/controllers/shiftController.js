@@ -73,10 +73,10 @@ const createShift = async (req, res) => {
   }
 
   // Fetch the referenced documents
-  const caregiver = await Caregiver.findOne({ caregiver_id });
-  const customer = await Customer.findOne({ customer_id });
-  const patient = await Patient.findOne({ patient_id });
-  const product = await Product.findOne({ product_id });
+  const caregiver = await Caregiver.findOne({ caregiver_id: caregiver_id });
+  const customer = await Customer.findOne({ customer_id: customer_id });
+  const patient = await Patient.findOne({ patient_id: patient_id });
+  const product = await Product.findOne({ product_id: product_id });
   // Check if they exist
   if (!caregiver || !customer || !patient || !product) {
     return res.status(404).json({ error: "Referenced document not found" });
