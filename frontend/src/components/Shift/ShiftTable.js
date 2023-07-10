@@ -88,13 +88,13 @@ const ShiftTable = ({
           new Date(shift[property])
         );
       case "caregiver_id":
-        return shift.caregiver?.id || "";
+        return shift.caregiver?.caregiver_id || "";
       case "customer_id":
-        return shift.customer?.id || "";
+        return shift.customer?.customer_id || "";
       case "patient_id":
-        return shift.patient?.id || "";
+        return shift.patient?.patient_id || "";
       case "product_id":
-        return shift.product?.id || "";
+        return shift.product?.product_id || "";
       default:
         return shift[property];
     }
