@@ -36,31 +36,7 @@ const ShiftEditForm = ({
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "start_time" || name === "end_time") {
-      setFormState({ ...formState, [name]: formatDate(value) });
-    } else if (name === "caregiver_id") {
-      const selectedCaregiver = caregivers.find(
-        (caregiver) => caregiver.caregiver_id === value
-      );
-      setFormState({ ...formState, caregiver: selectedCaregiver });
-    } else if (name === "customer_id") {
-      const selectedCustomer = customers.find(
-        (customer) => customer.customer_id === value
-      );
-      setFormState({ ...formState, customer: selectedCustomer });
-    } else if (name === "patient_id") {
-      const selectedPatient = patients.find(
-        (patient) => patient.patient_id === value
-      );
-      setFormState({ ...formState, patient: selectedPatient });
-    } else if (name === "product_id") {
-      const selectedProduct = products.find(
-        (product) => product.product_id === value
-      );
-      setFormState({ ...formState, product: selectedProduct });
-    } else {
-      setFormState({ ...formState, [name]: value });
-    }
+    setFormState({ ...formState, [name]: value });
   };
 
   //parse the date back to the yyyy-mm-dd format
@@ -76,6 +52,18 @@ const ShiftEditForm = ({
       ...formState,
       start_time: parseDate(formState.start_time),
       end_time: parseDate(formState.end_time),
+      caregiver: caregivers.find(
+        (caregiver) => caregiver.caregiver_id === formState.caregiver_id
+      ),
+      customer: customers.find(
+        (customer) => customer.customer_id === formState.customer_id
+      ),
+      patient: patients.find(
+        (patient) => patient.patient_id === formState.patient_id
+      ),
+      product: products.find(
+        (product) => product.product_id === formState.product_id
+      ),
     };
 
     const response = await fetch(
