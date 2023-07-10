@@ -13,6 +13,11 @@ const getShifts = async (req, res) => {
   res.status(200).json(shifts);
 };
 
+const Caregiver = require("../models/caregiverModel");
+const Customer = require("../models/customerModel");
+const Patient = require("../models/patientModel");
+const Product = require("../models/productModel");
+
 // get a single shift
 const getShift = async (req, res) => {
   const { id } = req.params;
