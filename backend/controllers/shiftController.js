@@ -1,32 +1,32 @@
+const Caregiver = require("../models/caregiverModel");
+const Customer = require("../models/customerModel");
+const Patient = require("../models/patientModel");
+const Product = require("../models/productModel");
+
 const Shift = require("../models/shiftModel");
 const mongoose = require("mongoose");
 
 // get all shifts
 const getShifts = async (req, res) => {
   const shifts = await Shift.find({})
-    .populate("caregiver", "caregiver_name")
-    .populate("customer", "customer_name")
-    .populate("patient", "patient_name")
-    .populate("product", "product_name")
+    .populate("caregiver", "caregiver_id") // retrieve the custom id
+    .populate("customer", "customer_id")
+    .populate("patient", "patient_id")
+    .populate("product", "product_id")
     .sort({ createdAt: -1 });
 
   res.status(200).json(shifts);
 };
-
-const Caregiver = require("../models/caregiverModel");
-const Customer = require("../models/customerModel");
-const Patient = require("../models/patientModel");
-const Product = require("../models/productModel");
 
 // get a single shift
 const getShift = async (req, res) => {
   const { id } = req.params;
 
   const shift = await Shift.findOne({ shift_id: id })
-    .populate("caregiver", "caregiver_id caregiver_name")
-    .populate("customer", "customer_id customer_name")
-    .populate("patient", "patient_id patient_name")
-    .populate("product", "product_id product_name");
+    .populate("caregiver", "caregiver_id") // retrieve the custom id
+    .populate("customer", "customer_id")
+    .populate("patient", "patient_id")
+    .populate("product", "product_id");
 
   if (!shift) {
     return res.status(404).json({ error: "No such shift" });
