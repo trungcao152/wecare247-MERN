@@ -122,14 +122,14 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
 
         <label>Start Time:</label>
         <input
-          type="date"
+          type="datetime-local"
           onChange={(e) => setStartTime(e.target.value)}
           value={start_time}
         />
 
         <label>End Time:</label>
         <input
-          type="date"
+          type="datetime-local"
           onChange={(e) => setEndTime(e.target.value)}
           value={end_time}
         />

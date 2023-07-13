@@ -14,7 +14,9 @@ const ShiftEditForm = ({
     const day = String(d.getDate()).padStart(2, "0");
     const month = String(d.getMonth() + 1).padStart(2, "0");
     const year = d.getFullYear();
-    return `${day}/${month}/${year}`;
+    const hours = String(d.getHours()).padStart(2, "0");
+    const minutes = String(d.getMinutes()).padStart(2, "0");
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
   };
 
   const formattedStartTime = shift.start_time
@@ -39,10 +41,12 @@ const ShiftEditForm = ({
     setFormState({ ...formState, [name]: value });
   };
 
-  //parse the date back to the yyyy-mm-dd format
+  //parse the date back to the h-yyyy-mm-dd format
   const parseDate = (date) => {
-    const [day, month, year] = date.split("/");
-    return `${year}-${month}-${day}`;
+    const [datePart, timePart] = date.split(" ");
+    const [day, month, year] = datePart.split("/");
+    const [hours, minutes] = timePart.split(":");
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
   const handleSubmit = async (event) => {
@@ -144,18 +148,26 @@ const ShiftEditForm = ({
       <label htmlFor="start_time">
         Start Time:
         <input
-          type="date"
+          type="datetime-local"
           name="start_time"
-          value={formState.start_time.split("/").reverse().join("-")}
+          value={
+            formState.start_time.split(" ")[0].split("/").reverse().join("-") +
+            "T" +
+            formState.start_time.split(" ")[1]
+          }
           onChange={handleChange}
         />
       </label>
       <label htmlFor="end_time">
         End Time:
         <input
-          type="date"
+          type="datetime-local"
           name="end_time"
-          value={formState.end_time.split("/").reverse().join("-")}
+          value={
+            formState.end_time.split(" ")[0].split("/").reverse().join("-") +
+            "T" +
+            formState.end_time.split(" ")[1]
+          }
           onChange={handleChange}
         />
       </label>

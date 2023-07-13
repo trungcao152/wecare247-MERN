@@ -6,6 +6,13 @@ const Product = require("../models/productModel");
 const Shift = require("../models/shiftModel");
 const mongoose = require("mongoose");
 
+// Helper function to parse date
+function parseDateFromInput(dateString) {
+  const [hours, datePart] = dateString.split("h-");
+  const [day, month, year] = datePart.split("/");
+  return new Date(`${year}-${month}-${day}T${hours}:00:00`);
+}
+
 // get all shifts
 const getShifts = async (req, res) => {
   const shifts = await Shift.find({})
@@ -37,7 +44,7 @@ const getShift = async (req, res) => {
 
 // create a new shift
 const createShift = async (req, res) => {
-  const {
+  let {
     shift_id,
     caregiver_id,
     customer_id,
@@ -47,7 +54,8 @@ const createShift = async (req, res) => {
     end_time,
   } = req.body;
 
-  console.log(req.body); //testing bug
+  start_time = parseDateFromInput(start_time);
+  end_time = parseDateFromInput(end_time);
 
   let emptyFields = [];
 
@@ -123,13 +131,19 @@ const deleteShift = async (req, res) => {
 const updateShift = async (req, res) => {
   const { id } = req.params;
 
-  const shift = await Shift.findOneAndUpdate(
-    { shift_id: id },
-    {
-      ...req.body,
-    },
-    { new: true, runValidators: true }
-  );
+  let updateData = { ...req.body };
+
+  if (updateData.start_time) {
+    updateData.start_time = parseDateFromInput(updateData.start_time);
+  }
+  if (updateData.end_time) {
+    updateData.end_time = parseDateFromInput(updateData.end_time);
+  }
+
+  const shift = await Shift.findOneAndUpdate({ shift_id: id }, updateData, {
+    new: true,
+    runValidators: true,
+  });
 
   if (!shift) {
     return res.status(404).json({ error: "No such shift" });

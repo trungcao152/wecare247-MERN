@@ -81,13 +81,16 @@ const ShiftTable = ({
   ];
 
   const formatCellContent = (shift, property) => {
-    console.log(shift); // Add this line
     switch (property) {
       case "start_time":
       case "end_time":
-        return new Intl.DateTimeFormat("en-GB").format(
-          new Date(shift[property])
-        );
+        return new Intl.DateTimeFormat("en-GB", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        }).format(new Date(shift[property]));
       case "caregiver_id":
         return shift.caregiver?.caregiver_id || "";
       case "customer_id":
