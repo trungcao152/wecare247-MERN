@@ -83,6 +83,17 @@ const ShiftEditForm = ({
       }
     );
 
+    //Testing response from backend
+    if (!response.ok) {
+      console.error(`HTTP error! status: ${response.status}`);
+      const errorBody = await response.json(); // Fetch error details from the body
+      console.error("Response body: ", errorBody); // Log error details
+      window.alert(
+        "An error occurred while updating the shift. Please try again."
+      ); // Alert user
+      return; // Exit function, don't proceed with updating shift in context
+    }
+
     const updatedShift = await response.json();
 
     if (response.ok) {
