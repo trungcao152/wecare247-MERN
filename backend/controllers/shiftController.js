@@ -8,9 +8,10 @@ const mongoose = require("mongoose");
 
 // Helper function to parse date
 function parseDateFromInput(dateString) {
-  const [hours, datePart] = dateString.split("h-");
-  const [day, month, year] = datePart.split("/");
-  return new Date(`${year}-${month}-${day}T${hours}:00:00`);
+  const datePart = dateString.split("T")[0];
+  const timePart = dateString.split("T")[1].split(":")[0];
+  const [year, month, day] = datePart.split("-");
+  return new Date(`${year}-${month}-${day}T${timePart}:00:00`);
 }
 
 // get all shifts
