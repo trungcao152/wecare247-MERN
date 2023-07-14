@@ -27,7 +27,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
       end_time: new Date(end_time).toISOString(),
     };
 
-    console.log(JSON.stringify(shift, null, 2)); // testing bug
+    console.log("Submitting data to the backend: ", shift); // Test shift
 
     try {
       const response = await fetch(
@@ -41,8 +41,10 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
         }
       );
 
+      //Testing response from backend
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        console.error(`HTTP error! status: ${response.status}`);
+        console.error("Response body: ", await response.json()); // Add this line
       }
 
       const json = await response.json();

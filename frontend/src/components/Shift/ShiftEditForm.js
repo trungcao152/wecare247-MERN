@@ -70,6 +70,8 @@ const ShiftEditForm = ({
       ),
     };
 
+    console.log("Submitting updated data to the backend: ", updatedFormState); // Testing
+
     const response = await fetch(
       "https://wecare247-backend.onrender.com/api/shifts/" + shift.shift_id,
       {
