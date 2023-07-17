@@ -22,10 +22,13 @@ const ShiftEditForm = ({
   const formatDateToInputValue = (date) => {
     if (!date) return ""; // return empty string if date is falsy
 
-    const [datePart, timePart] = date.split(" ");
-    const formattedDate = datePart.split("/").reverse().join("-");
-
-    return `${formattedDate}T${timePart || "00:00"}`; // Use 00:00 as default time if it's not defined
+    const d = new Date(date);
+    const day = String(d.getUTCDate()).padStart(2, "0");
+    const month = String(d.getUTCMonth() + 1).padStart(2, "0");
+    const year = d.getUTCFullYear();
+    const hours = String(d.getUTCHours()).padStart(2, "0");
+    const minutes = String(d.getUTCMinutes()).padStart(2, "0");
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
   const [formState, setFormState] = useState({
