@@ -67,8 +67,8 @@ const ShiftEditForm = ({
       ),
     };
 
-    updatedFormState.start_time = formState.start_time;
-    updatedFormState.end_time = formState.end_time;
+    updatedFormState.start_time = new Date(formState.start_time).toISOString();
+    updatedFormState.end_time = new Date(formState.end_time).toISOString();
 
     console.log("Submitting updated data to the backend: ", updatedFormState); // Testing
 

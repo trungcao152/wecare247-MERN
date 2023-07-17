@@ -5,14 +5,6 @@ const Patient = require("../models/patientModel");
 const Product = require("../models/productModel");
 const Shift = require("../models/shiftModel");
 
-// Helper function to parse date
-function parseDateFromInput(dateString) {
-  const datePart = dateString.split("T")[0];
-  const timePart = dateString.split("T")[1].split(":")[0];
-  const [year, month, day] = datePart.split("-");
-  return new Date(`${year}-${month}-${day}T${timePart}:00:00`);
-}
-
 // get all shifts
 const getShifts = async (req, res) => {
   const shifts = await Shift.find({})
@@ -54,8 +46,8 @@ const createShift = async (req, res) => {
     end_time,
   } = req.body;
 
-  start_time = parseDateFromInput(start_time);
-  end_time = parseDateFromInput(end_time);
+  start_time = new Date(req.body.start_time);
+  end_time = new Date(req.body.end_time);
 
   let emptyFields = [];
 
@@ -136,10 +128,10 @@ const updateShift = async (req, res) => {
   let updateData = { ...req.body };
 
   if (updateData.start_time) {
-    updateData.start_time = parseDateFromInput(updateData.start_time);
+    updateData.start_time = new Date(updateData.start_time);
   }
   if (updateData.end_time) {
-    updateData.end_time = parseDateFromInput(updateData.end_time);
+    updateData.end_time = new Date(updateData.end_time);
   }
 
   const shift = await Shift.findOneAndUpdate({ shift_id: id }, updateData, {
