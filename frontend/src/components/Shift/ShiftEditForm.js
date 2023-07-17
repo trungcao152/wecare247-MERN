@@ -19,10 +19,14 @@ const ShiftEditForm = ({
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   };
 
-  const formattedStartTime = shift.start_time
-    ? formatDate(shift.start_time)
-    : "";
-  const formattedEndTime = shift.end_time ? formatDate(shift.end_time) : "";
+  const formatDateToInputValue = (date) => {
+    if (!date) return ""; // return empty string if date is falsy
+
+    const [datePart, timePart] = date.split(" ");
+    const formattedDate = datePart.split("/").reverse().join("-");
+
+    return `${formattedDate}T${timePart || "00:00"}`; // Use 00:00 as default time if it's not defined
+  };
 
   const [formState, setFormState] = useState({
     ...shift,
@@ -30,8 +34,8 @@ const ShiftEditForm = ({
     customer_id: shift.customer.customer_id,
     patient_id: shift.patient.patient_id,
     product_id: shift.product.product_id,
-    start_time: formattedStartTime,
-    end_time: formattedEndTime,
+    start_time: formatDateToInputValue(shift.start_time),
+    end_time: formatDateToInputValue(shift.end_time),
   });
 
   const { dispatch } = useShiftsContext();
@@ -163,11 +167,7 @@ const ShiftEditForm = ({
         <input
           type="datetime-local"
           name="start_time"
-          value={
-            formState.start_time.split(" ")[0].split("/").reverse().join("-") +
-            "T" +
-            formState.start_time.split(" ")[1]
-          }
+          value={formState.start_time}
           onChange={handleChange}
         />
       </label>
@@ -176,11 +176,7 @@ const ShiftEditForm = ({
         <input
           type="datetime-local"
           name="end_time"
-          value={
-            formState.end_time.split(" ")[0].split("/").reverse().join("-") +
-            "T" +
-            formState.end_time.split(" ")[1]
-          }
+          value={formState.end_time}
           onChange={handleChange}
         />
       </label>
