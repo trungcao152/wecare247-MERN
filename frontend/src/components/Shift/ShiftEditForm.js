@@ -48,28 +48,8 @@ const ShiftEditForm = ({
     setFormState({ ...formState, [name]: value });
   };
 
-  //parse the date back to the h-yyyy-mm-dd format
-  const parseDate = (date) => {
-    const [datePart, timePart] = date.split(" ");
-    const [day, month, year] = datePart.split("/");
-    const [hours, minutes] = timePart.split(":");
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const toUTCDate = (localDate) => {
-      let date = new Date(localDate);
-      let utcDate = new Date(
-        date.getUTCFullYear(),
-        date.getUTCMonth(),
-        date.getUTCDate(),
-        date.getUTCHours(),
-        date.getUTCMinutes()
-      );
-      return utcDate;
-    };
 
     const updatedFormState = {
       ...formState,
@@ -87,8 +67,8 @@ const ShiftEditForm = ({
       ),
     };
 
-    updatedFormState.start_time = toUTCDate(formState.start_time).toISOString();
-    updatedFormState.end_time = toUTCDate(formState.end_time).toISOString();
+    updatedFormState.start_time = formState.start_time;
+    updatedFormState.end_time = formState.end_time;
 
     console.log("Submitting updated data to the backend: ", updatedFormState); // Testing
 
@@ -117,22 +97,6 @@ const ShiftEditForm = ({
     const updatedShift = await response.json();
 
     if (response.ok) {
-      const toLocalDate = (utcDate) => {
-        let date = new Date(utcDate);
-        let localDate = new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate(),
-          date.getHours(),
-          date.getMinutes()
-        );
-        return localDate;
-      };
-
-      //Convert updatedShift.start_time and updatedShift.end_time to local time
-      updatedShift.start_time = toLocalDate(updatedShift.start_time);
-      updatedShift.end_time = toLocalDate(updatedShift.end_time);
-
       dispatch({ type: "UPDATE_SHIFT", payload: updatedShift });
       setIsEditing(false);
     } else {

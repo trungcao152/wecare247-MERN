@@ -1,10 +1,9 @@
+// shiftController.js
 const Caregiver = require("../models/caregiverModel");
 const Customer = require("../models/customerModel");
 const Patient = require("../models/patientModel");
 const Product = require("../models/productModel");
-
 const Shift = require("../models/shiftModel");
-const mongoose = require("mongoose");
 
 // Helper function to parse date
 function parseDateFromInput(dateString) {
@@ -91,6 +90,7 @@ const createShift = async (req, res) => {
   const customer = await Customer.findOne({ customer_id: customer_id });
   const patient = await Patient.findOne({ patient_id: patient_id });
   const product = await Product.findOne({ product_id: product_id });
+
   // Check if they exist
   if (!caregiver || !customer || !patient || !product) {
     return res.status(404).json({ error: "Referenced document not found" });
@@ -107,6 +107,7 @@ const createShift = async (req, res) => {
       start_time,
       end_time,
     });
+
     console.log("Created Shift: ", shift); // log the created shift
     res.status(200).json(shift);
   } catch (error) {
@@ -149,6 +150,7 @@ const updateShift = async (req, res) => {
   if (!shift) {
     return res.status(404).json({ error: "No such shift" });
   }
+
   res.status(200).json(shift);
 };
 
