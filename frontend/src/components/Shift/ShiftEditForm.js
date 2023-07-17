@@ -59,6 +59,18 @@ const ShiftEditForm = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const toUTCDate = (localDate) => {
+      let date = new Date(localDate);
+      let utcDate = new Date(
+        date.getUTCFullYear(),
+        date.getUTCMonth(),
+        date.getUTCDate(),
+        date.getUTCHours(),
+        date.getUTCMinutes()
+      );
+      return utcDate;
+    };
+
     const updatedFormState = {
       ...formState,
       caregiver: caregivers.find(
@@ -74,6 +86,9 @@ const ShiftEditForm = ({
         (product) => product.product_id === formState.product_id
       ),
     };
+
+    updatedFormState.start_time = toUTCDate(formState.start_time).toISOString();
+    updatedFormState.end_time = toUTCDate(formState.end_time).toISOString();
 
     console.log("Submitting updated data to the backend: ", updatedFormState); // Testing
 
@@ -102,6 +117,22 @@ const ShiftEditForm = ({
     const updatedShift = await response.json();
 
     if (response.ok) {
+      const toLocalDate = (utcDate) => {
+        let date = new Date(utcDate);
+        let localDate = new Date(
+          date.getFullYear(),
+          date.getMonth(),
+          date.getDate(),
+          date.getHours(),
+          date.getMinutes()
+        );
+        return localDate;
+      };
+
+      //Convert updatedShift.start_time and updatedShift.end_time to local time
+      updatedShift.start_time = toLocalDate(updatedShift.start_time);
+      updatedShift.end_time = toLocalDate(updatedShift.end_time);
+
       dispatch({ type: "UPDATE_SHIFT", payload: updatedShift });
       setIsEditing(false);
     } else {
