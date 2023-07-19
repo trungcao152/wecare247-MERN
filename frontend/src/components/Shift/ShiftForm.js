@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useShiftsContext } from "../hooks/useShiftsContext";
+import CaregiverFilter from "./ShiftFilter";
 
 const ShiftForm = ({ caregivers, customers, patients, products }) => {
-  console.log(caregivers, customers, patients, products); //testing
-
   const { dispatch } = useShiftsContext();
 
   const [shift_id, setShiftId] = useState("");
@@ -13,6 +12,8 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
   const [product_id, setProductId] = useState("");
   const [start_time, setStartTime] = useState("");
   const [end_time, setEndTime] = useState("");
+
+  const [filteredCaregivers, setFilteredCaregivers] = useState(caregivers); // New state for filtered caregivers
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,6 +66,11 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
       <form onSubmit={handleSubmit}>
         <h3>Add a New Shift</h3>
 
+        <CaregiverFilter
+          initialCaregivers={caregivers}
+          onFilterChange={setFilteredCaregivers}
+        />
+
         <label>Shift ID:</label>
         <input
           type="text"
@@ -76,8 +82,8 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
         <select
           onChange={(e) => setCaregiverId(e.target.value)}
           value={caregiver_id}>
-          {caregivers &&
-            caregivers.map((caregiver) => (
+          {filteredCaregivers && // Change caregivers to filteredCaregivers
+            filteredCaregivers.map((caregiver) => (
               <option
                 key={caregiver.caregiver_id}
                 value={caregiver.caregiver_id}>
