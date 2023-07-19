@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const CaregiverFilter = ({ initialCaregivers, onFilterChange }) => {
+const ShiftFilter = ({ initialCaregivers, onFilterChange }) => {
   const [selectedSkillLevel, setSelectedSkillLevel] = useState(1);
   const [filteredCaregivers, setFilteredCaregivers] = useState([]);
 
@@ -11,6 +11,8 @@ const CaregiverFilter = ({ initialCaregivers, onFilterChange }) => {
     setFilteredCaregivers(filtered);
     onFilterChange(filtered);
   }, [selectedSkillLevel, initialCaregivers, onFilterChange]);
+
+  console.log("Filtered caregivers:", filteredCaregivers); //Testing
 
   return (
     <div className="caregiver-filter">
@@ -26,4 +28,4 @@ const CaregiverFilter = ({ initialCaregivers, onFilterChange }) => {
   );
 };
 
-export default CaregiverFilter;
+export default ShiftFilter;

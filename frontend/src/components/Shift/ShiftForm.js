@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useShiftsContext } from "../hooks/useShiftsContext";
-import CaregiverFilter from "./ShiftFilter";
+import ShiftFilter from "./ShiftFilter";
 
 const ShiftForm = ({ caregivers, customers, patients, products }) => {
+  console.log("Initial caregivers:", caregivers); //Testing
+
   const { dispatch } = useShiftsContext();
 
   const [shift_id, setShiftId] = useState("");
@@ -66,7 +68,7 @@ const ShiftForm = ({ caregivers, customers, patients, products }) => {
       <form onSubmit={handleSubmit}>
         <h3>Add a New Shift</h3>
 
-        <CaregiverFilter
+        <ShiftFilter
           initialCaregivers={caregivers}
           onFilterChange={setFilteredCaregivers}
         />
