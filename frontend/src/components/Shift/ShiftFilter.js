@@ -6,7 +6,7 @@ const ShiftFilter = ({ initialCaregivers, onFilterChange }) => {
 
   useEffect(() => {
     const filtered = initialCaregivers.filter(
-      (caregiver) => caregiver.skillLevel >= selectedSkillLevel
+      (caregiver) => caregiver.skill_level >= selectedSkillLevel
     );
     setFilteredCaregivers(filtered);
     onFilterChange(filtered);
