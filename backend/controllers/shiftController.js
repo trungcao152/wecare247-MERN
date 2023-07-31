@@ -4,6 +4,9 @@ const Customer = require("../models/customerModel");
 const Patient = require("../models/patientModel");
 const Product = require("../models/productModel");
 const Shift = require("../models/shiftModel");
+const {
+  adjustFreeTimeForShift,
+} = require("../controllers/caregiverFreeTimeController");
 
 // get all shifts
 const getShifts = async (req, res) => {
@@ -34,6 +37,11 @@ const getShift = async (req, res) => {
   res.status(200).json(shift);
 };
 
+// Check if the end time is after the start time
+const isEndTimeAfterStartTime = (start, end) => {
+  return end.getTime() > start.getTime();
+};
+
 // create a new shift
 const createShift = async (req, res) => {
   let {
@@ -48,6 +56,10 @@ const createShift = async (req, res) => {
 
   start_time = new Date(req.body.start_time);
   end_time = new Date(req.body.end_time);
+
+  if (!isEndTimeAfterStartTime(start_time, end_time)) {
+    return res.status(400).json({ error: "End time must be after start time" });
+  }
 
   let emptyFields = [];
 
@@ -100,6 +112,9 @@ const createShift = async (req, res) => {
       end_time,
     });
 
+    // <-- Adjust the caregiver's free time immediately after creating the shift
+    await adjustFreeTimeForShift(caregiver._id, start_time, end_time);
+
     console.log("Created Shift: ", shift); // log the created shift
     res.status(200).json(shift);
   } catch (error) {
@@ -134,6 +149,14 @@ const updateShift = async (req, res) => {
     updateData.end_time = new Date(updateData.end_time);
   }
 
+  if (
+    updateData.start_time &&
+    updateData.end_time &&
+    !isEndTimeAfterStartTime(updateData.start_time, updateData.end_time)
+  ) {
+    return res.status(400).json({ error: "End time must be after start time" });
+  }
+
   const shift = await Shift.findOneAndUpdate({ shift_id: id }, updateData, {
     new: true,
     runValidators: true,
@@ -142,6 +165,13 @@ const updateShift = async (req, res) => {
   if (!shift) {
     return res.status(404).json({ error: "No such shift" });
   }
+
+  // <-- Adjust the caregiver's free time after updating the shift. You might want to add further logic if you only want to adjust when start_time or end_time has changed.
+  await adjustFreeTimeForShift(
+    shift.caregiver,
+    updateData.start_time || shift.start_time,
+    updateData.end_time || shift.end_time
+  );
 
   res.status(200).json(shift);
 };

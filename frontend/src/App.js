@@ -10,6 +10,7 @@ import { PatientsContextProvider } from "./context/PatientsContext";
 import { CustomersContextProvider } from "./context/CustomersContext";
 import { ProductsContextProvider } from "./context/ProductsContext";
 import { ShiftsContextProvider } from "./context/ShiftsContext";
+import { CaregiverFreeTimeProvider } from "./context/CaregiverFreeTimeContext";
 
 // pages and components
 import WelcomePage from "./pages/WelcomePage";
@@ -38,14 +39,19 @@ function App() {
               <CustomersContextProvider>
                 <ProductsContextProvider>
                   <ShiftsContextProvider>
-                    <Routes>
-                      <Route path="/" element={<WelcomePage />} />
-                      <Route path="/caregivers" element={<CaregiversPage />} />
-                      <Route path="/patients" element={<PatientsPage />} />
-                      <Route path="/customers" element={<CustomersPage />} />
-                      <Route path="/products" element={<ProductsPage />} />
-                      <Route path="/shifts" element={<ShiftsPage />} />
-                    </Routes>
+                    <CaregiverFreeTimeProvider>
+                      <Routes>
+                        <Route path="/" element={<WelcomePage />} />
+                        <Route
+                          path="/caregivers"
+                          element={<CaregiversPage />}
+                        />
+                        <Route path="/patients" element={<PatientsPage />} />
+                        <Route path="/customers" element={<CustomersPage />} />
+                        <Route path="/products" element={<ProductsPage />} />
+                        <Route path="/shifts" element={<ShiftsPage />} />
+                      </Routes>
+                    </CaregiverFreeTimeProvider>
                   </ShiftsContextProvider>
                 </ProductsContextProvider>
               </CustomersContextProvider>

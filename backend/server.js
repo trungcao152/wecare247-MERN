@@ -7,6 +7,7 @@ const customerRoutes = require("./routes/customers");
 const patientRoutes = require("./routes/patients");
 const productRoutes = require("./routes/products");
 const shiftRoutes = require("./routes/shifts");
+const caregiverFreeTimeRoutes = require("./routes/caregiverFreeTime"); // Added this line
 const path = require("path");
 const cors = require("cors");
 
@@ -21,7 +22,7 @@ const corsOptions = {
 // Apply CORS middleware before other middlewares
 app.use(cors(corsOptions));
 
-//middleware
+// middleware
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -35,6 +36,7 @@ app.use("/api/customers", customerRoutes);
 app.use("/api/patients", patientRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/shifts", shiftRoutes);
+app.use("/api/caregiverFreeTime", caregiverFreeTimeRoutes); // Added this line
 
 if (process.env.NODE_ENV === "production") {
   // Set static folder up in production
@@ -47,7 +49,7 @@ if (process.env.NODE_ENV === "production") {
   console.log("Serving React App...");
 }
 
-//connect to db
+// connect to db
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
